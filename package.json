@@ -1,0 +1,15 @@
+{
+  "name": "projects",
+  "version": "1.0.0",
+  "description": "Enable Solutions project files",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/ans/enable-solutions-presentation.html",
+    "serve": "live-server --port=3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
