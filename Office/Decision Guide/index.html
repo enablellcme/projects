@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enable Pre-Meeting Discovery Guide</title>
+  <meta name="description" content="Enable Workspace Pre-Meeting Discovery Guide - Initial discovery form for Zoho consulting projects">
+
+  <style>
+    /* Enable Branded Colors */
+    :root {
+      --enable-primary: #005D8F;
+      --enable-accent: #09F781;
+      --enable-dark: #003D4F;
+      --enable-light-bg: #EFF4F4;
+      --enable-text-dark: #003D4F;
+      --enable-text-muted: #005D8F;
+      --enable-border: #005D8F40;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --line: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--enable-light-bg); color: var(--enable-text-dark); }
+
+    header { padding: 24px 20px; background: #fff; border-bottom: 3px solid var(--enable-primary); position: sticky; top: 0; z-index: 900; box-shadow: 0 2px 8px rgba(0,93,143,.1); }
+    header h1 { margin: 0 0 8px 0; font-size: 24px; color: var(--enable-primary); }
+    header p { margin: 0; color: var(--enable-text-muted); font-size: 14px; }
+
+    main { max-width: 1100px; margin: 24px auto; padding: 0 16px 40px; }
+
+    .card { background: var(--card); border: 2px solid var(--enable-border); border-radius: 12px; padding: 20px; margin: 16px 0; box-shadow: 0 4px 12px rgba(0,93,143,.08); }
+
+    h2 { font-size: 18px; margin: 0 0 8px; color: var(--enable-primary); border-bottom: 2px solid var(--enable-accent); padding-bottom: 6px; display: inline-block; }
+    .sub { color: var(--enable-text-muted); font-size: 13px; margin: 6px 0 12px; display: block; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 16px; align-items: start; }
+
+    label { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.4; margin: 4px 0; cursor: pointer; }
+    label.block { display: block; margin: 8px 0; }
+
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], select, textarea {
+      width: 100%; padding: 10px; border: 1px solid var(--enable-border); border-radius: 8px; background: #fff; font-size: 14px;
+    }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--enable-accent); border-color: var(--enable-primary); }
+    textarea { min-height: 80px; resize: vertical; }
+
+    details { border: 2px solid var(--enable-border); border-radius: 10px; background: #fff; padding: 12px 16px; margin: 12px 0; }
+    details[hidden] { display: none !important; }
+    details summary { cursor: pointer; font-weight: 600; color: var(--enable-primary); font-size: 15px; }
+    details[open] { background: var(--enable-light-bg); border-color: var(--enable-primary); }
+
+    .facet { margin: 10px 0 6px; font-weight: 600; font-size: 13px; color: var(--enable-dark); }
+    .hint { font-size: 12px; color: var(--enable-text-muted); font-style: italic; }
+    .warning { background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 8px; margin: 12px 0; color: #856404; font-size: 13px; }
+
+    button { padding: 10px 16px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; transition: all 0.2s ease; font-size: 14px; }
+    button.primary { background: var(--enable-primary); color: #fff; }
+    button.primary:hover { background: var(--enable-dark); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,93,143,.3); }
+    button.accent { background: var(--enable-accent); color: var(--enable-dark); }
+    button.accent:hover { background: #07d66d; transform: translateY(-1px); }
+    button.ghost { background: #fff; border: 2px solid var(--enable-primary); color: var(--enable-primary); }
+    button.ghost:hover { background: var(--enable-light-bg); }
+
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; margin-top: 16px; }
+
+    /* Modal Styles */
+    .enable-modal { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); }
+    .enable-modal.active { display: block; }
+    .enable-modal-content { background-color: #fefefe; margin: 3% auto; padding: 0; border: 2px solid var(--enable-primary); border-radius: 12px; width: 90%; max-width: 900px; box-shadow: 0 8px 24px rgba(0,93,143,.3); }
+    .enable-modal-header { padding: 20px 24px; background: var(--enable-primary); color: white; border-radius: 10px 10px 0 0; display: flex; justify-content: space-between; align-items: center; }
+    .enable-modal-header h3 { margin: 0; font-size: 20px; }
+    .enable-close { color: white; font-size: 32px; font-weight: bold; cursor: pointer; line-height: 1; user-select: none; }
+    .enable-close:hover { color: var(--enable-accent); }
+    .enable-modal-body { padding: 24px; max-height: 70vh; overflow-y: auto; }
+
+    .service-tier { border: 2px solid var(--enable-border); border-radius: 10px; padding: 16px; margin: 12px 0; }
+    .service-tier h4 { color: var(--enable-primary); margin: 0 0 8px; font-size: 18px; }
+    .service-tier .tagline { color: var(--enable-text-muted); font-style: italic; margin-bottom: 12px; }
+    .service-tier ul { margin: 8px 0; padding-left: 20px; }
+    .service-tier li { margin: 4px 0; }
+
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .comparison-table th { background: var(--enable-primary); color: white; padding: 12px 8px; text-align: left; font-weight: 600; }
+    .comparison-table td { padding: 10px 8px; border-bottom: 1px solid var(--enable-border); }
+    .comparison-table tr:hover { background: var(--enable-light-bg); }
+
+    .info-link { color: var(--enable-primary); text-decoration: underline; cursor: pointer; font-weight: 600; }
+    .info-link:hover { color: var(--enable-dark); }
+
+    @media print {
+      header { position: static; }
+      .actions { display: none; }
+      .enable-modal { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Enable Pre-Meeting Discovery Guide</h1>
+    <p>Initial Discovery — Select relevant project types below. Sections appear only when selected.</p>
+  </header>
+
+  <main>
+    <!-- Contact & Context -->
+    <section class="card">
+      <h2>Contact & Context</h2>
+      <span class="sub">Basic information to help us prepare for our conversation</span>
+
+      <div class="grid-2" style="margin-top:12px">
+        <div><label class="block">Company Name<input type="text" id="company" name="company" placeholder="Your company name"/></label></div>
+        <div><label class="block">Contact Name<input type="text" id="name" name="name" placeholder="Your full name"/></label></div>
+        <div><label class="block">Email<input type="email" id="email" name="email" placeholder="your@email.com"/></label></div>
+        <div><label class="block">Phone<input type="tel" id="phone" name="phone" placeholder="(555) 123-4567"/></label></div>
+      </div>
+
+      <div class="grid-3" style="margin-top:16px">
+        <div>
+          <label class="block">Preferred Service Tier <span class="info-link" id="showServiceLevels">(What's this?)</span></label>
+          <select id="tier" name="tier">
+            <option value="">-- Select --</option>
+            <option value="essentials">Essentials — You Build, We Guide</option>
+            <option value="collaborative">Collaborative — We Build Together</option>
+            <option value="managed">Managed — We Handle It All</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">Complexity (self-assessment)</label>
+          <select id="complexity" name="complexity">
+            <option value="">-- Select --</option>
+            <option value="simple">Simple (1–2 systems)</option>
+            <option value="custom">Custom (3–8 systems)</option>
+            <option value="complex">Complex (8+ systems)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">Commercial Interest Type</label>
+          <select id="commercial_type" name="commercial_type">
+            <option value="">-- Select --</option>
+            <option value="fixed">Fixed-based Project</option>
+            <option value="tm">Time and Materials</option>
+            <option value="subscription">Subscription-based</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:16px">
+        <div>
+          <span class="facet">Fit & Risk Assessment</span>
+          <label><input type="checkbox" id="fit_tech" name="fit_tech"/> Comfortable with technical tasks (APIs, config)</label>
+          <label><input type="checkbox" id="fit_time" name="fit_time"/> Have internal time to contribute (2–4 hours/week)</label>
+          <label><input type="checkbox" id="fit_owner" name="fit_owner"/> Internal owner assigned for this project</label>
+          <label><input type="checkbox" id="fit_risk" name="fit_risk"/> Mission-critical (low risk tolerance)</label>
+        </div>
+        <div>
+          <span class="facet">Budget & Commitment</span>
+          <label><input type="checkbox" id="fit_budget_money" name="fit_budget_money"/> Prefer to invest money to move faster</label>
+          <label><input type="checkbox" id="fit_budget_time" name="fit_budget_time"/> Prefer to invest internal time to reduce cost</label>
+          <label class="block" style="margin-top:8px">Weekly hours your team can commit<input type="number" id="weekly_hours" name="weekly_hours" min="0" step="1" placeholder="e.g., 2–8"/></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Types -->
+    <section class="card">
+      <h2>Project Types</h2>
+      <span class="sub">Select the categories that apply to your needs (only selected sections will appear below)</span>
+
+      <div class="warning">
+        <strong>⚠️ Recommendation:</strong> For initial discovery calls, we recommend selecting <strong>no more than 3 project types</strong>. This helps us focus the conversation and provide the most value. Additional project types can be addressed in follow-up sessions.
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" class="project-toggle" data-target="sec_install"/> New Zoho Install</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_optimize"/> Zoho Enhancements / Optimizations</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_managed"/> Managed Services</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_inventory"/> Inventory Management</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_ecom"/> E-Commerce</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_appint"/> Application Integration</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_books"/> Zoho Books & Accounting</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_payments"/> Credit Card Processing & Payments</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_creator"/> Zoho Creator / Portals / App Dev</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_campaigns"/> Zoho Campaigns / Marketing Automation</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_workflow"/> Workflow & Process</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_ai"/> AI Adoption</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_digital"/> Digital Transformation Advisory</label>
+        <label><input type="checkbox" class="project-toggle" data-target="sec_other"/> Other / Custom</label>
+      </div>
+      <p class="hint" id="selectedCount">0 project types selected</p>
+    </section>
+
+    <!-- Project Type Detail Sections -->
+
+    <!-- New Install -->
+    <details id="sec_install" hidden>
+      <summary>New Zoho Install</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="install_crm"/> CRM core setup</label>
+        <label><input type="checkbox" name="install_roles"/> Roles & permissions</label>
+        <label><input type="checkbox" name="install_migration"/> Data migration</label>
+        <label><input type="checkbox" name="install_automation"/> Starter automations</label>
+        <label><input type="checkbox" name="install_training"/> Training & enablement</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Number of Users<input type="number" name="install_users" min="1" step="1" placeholder="e.g., 10"/></label></div>
+        <div><label class="block">Data Sources<textarea name="install_sources" placeholder="Where data comes from" style="min-height:60px"></textarea></label></div>
+        <div><label class="block">Weekly Client Hours<input type="number" name="install_hours" min="0" step="1" placeholder="e.g., 2–6"/></label></div>
+      </div>
+      <label class="block">Additional Notes<textarea name="install_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Zoho Enhancements / Optimizations -->
+    <details id="sec_optimize" hidden>
+      <summary>Zoho Enhancements / Optimizations</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="optimize_automation"/> Advanced automation & workflows</label>
+        <label><input type="checkbox" name="optimize_fields"/> Custom fields & modules</label>
+        <label><input type="checkbox" name="optimize_reports"/> Reports & dashboards</label>
+        <label><input type="checkbox" name="optimize_integrations"/> Integration enhancements</label>
+        <label><input type="checkbox" name="optimize_performance"/> Performance optimization</label>
+        <label><input type="checkbox" name="optimize_cleanup"/> Data cleanup & deduplication</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Current Zoho Apps in Use<textarea name="optimize_apps" placeholder="List apps (CRM, Books, Desk, etc.)" style="min-height:60px"></textarea></label></div>
+        <div><label class="block">Pain Points to Address<textarea name="optimize_pain" placeholder="What's not working well?" style="min-height:60px"></textarea></label></div>
+        <div><label class="block">Desired Improvements<textarea name="optimize_desired" placeholder="What would success look like?" style="min-height:60px"></textarea></label></div>
+      </div>
+      <label class="block">Additional Notes<textarea name="optimize_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Managed Services -->
+    <details id="sec_managed" hidden>
+      <summary>Managed Services</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="managed_admin"/> Ongoing admin & user management</label>
+        <label><input type="checkbox" name="managed_support"/> User support & training</label>
+        <label><input type="checkbox" name="managed_maintenance"/> System maintenance & updates</label>
+        <label><input type="checkbox" name="managed_monitoring"/> Performance monitoring</label>
+        <label><input type="checkbox" name="managed_optimization"/> Continuous optimization</label>
+        <label><input type="checkbox" name="managed_reporting"/> Monthly reporting & analytics</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Number of Users to Support<input type="number" name="managed_users" min="1" step="1" placeholder="e.g., 25"/></label></div>
+        <div><label class="block">Preferred Response Time<select name="managed_sla"><option value="">-- Select --</option><option value="4hrs">4 hours</option><option value="24hrs">24 hours</option><option value="48hrs">48 hours</option></select></label></div>
+        <div><label class="block">Hours/Month Estimate<input type="number" name="managed_hours" min="1" step="1" placeholder="e.g., 10-20"/></label></div>
+      </div>
+      <label class="block">Service Scope & Expectations<textarea name="managed_scope" placeholder="What do you expect from ongoing managed services?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="managed_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Inventory Management -->
+    <details id="sec_inventory" hidden>
+      <summary>Inventory Management</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="inventory_tracking"/> Multi-location tracking</label>
+        <label><input type="checkbox" name="inventory_automation"/> Automated reorder points</label>
+        <label><input type="checkbox" name="inventory_serial"/> Serial/batch number tracking</label>
+        <label><input type="checkbox" name="inventory_warehouse"/> Warehouse management</label>
+        <label><input type="checkbox" name="inventory_kitting"/> Kitting & bundling</label>
+        <label><input type="checkbox" name="inventory_reporting"/> Inventory reports & analytics</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Number of SKUs<input type="number" name="inventory_skus" min="1" step="1" placeholder="e.g., 500"/></label></div>
+        <div><label class="block">Number of Locations<input type="number" name="inventory_locations" min="1" step="1" placeholder="e.g., 3"/></label></div>
+        <div><label class="block">Integration Needs<textarea name="inventory_integrations" placeholder="POS, e-commerce, accounting, etc." style="min-height:60px"></textarea></label></div>
+      </div>
+      <label class="block">Current Inventory System (if any)<textarea name="inventory_current" placeholder="What system are you using now? What's working/not working?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="inventory_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- E-Commerce -->
+    <details id="sec_ecom" hidden>
+      <summary>E-Commerce</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="ecom_platform"/> E-commerce platform integration</label>
+        <label><input type="checkbox" name="ecom_sync"/> Order & inventory sync</label>
+        <label><input type="checkbox" name="ecom_customer"/> Customer data sync</label>
+        <label><input type="checkbox" name="ecom_shipping"/> Shipping & fulfillment</label>
+        <label><input type="checkbox" name="ecom_marketing"/> Marketing automation</label>
+        <label><input type="checkbox" name="ecom_analytics"/> Sales analytics & reporting</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">E-commerce Platform<select name="ecom_platform_type"><option value="">-- Select --</option><option value="shopify">Shopify</option><option value="woocommerce">WooCommerce</option><option value="magento">Magento</option><option value="bigcommerce">BigCommerce</option><option value="zoho_commerce">Zoho Commerce</option><option value="custom">Custom</option><option value="other">Other</option></select></label></div>
+        <div><label class="block">Monthly Order Volume<input type="number" name="ecom_orders" min="1" step="1" placeholder="e.g., 500"/></label></div>
+        <div><label class="block">Sales Channels<textarea name="ecom_channels" placeholder="Online store, Amazon, eBay, etc." style="min-height:60px"></textarea></label></div>
+      </div>
+      <label class="block">Integration Requirements<textarea name="ecom_requirements" placeholder="What needs to sync with Zoho? Any specific workflows?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="ecom_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Application Integration -->
+    <details id="sec_appint" hidden>
+      <summary>Application Integration</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="appint_crm"/> CRM integrations</label>
+        <label><input type="checkbox" name="appint_accounting"/> Accounting/ERP systems</label>
+        <label><input type="checkbox" name="appint_marketing"/> Marketing platforms</label>
+        <label><input type="checkbox" name="appint_support"/> Support/ticketing systems</label>
+        <label><input type="checkbox" name="appint_custom"/> Custom API development</label>
+        <label><input type="checkbox" name="appint_automation"/> Integration automation (Zapier, Make, etc.)</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Primary Systems to Integrate<textarea name="appint_systems" placeholder="List key systems" style="min-height:60px"></textarea></label></div>
+        <div><label class="block">Data Flow Requirements<textarea name="appint_dataflow" placeholder="What data needs to sync? How often?" style="min-height:60px"></textarea></label></div>
+        <div><label class="block">Integration Type Preference<select name="appint_type"><option value="">-- Select --</option><option value="native">Native Zoho integrations</option><option value="middleware">Middleware (Zapier, Make)</option><option value="custom">Custom API development</option><option value="hybrid">Combination/Hybrid</option></select></label></div>
+      </div>
+      <label class="block">Current Integration Challenges<textarea name="appint_challenges" placeholder="What's not working? What manual work could be automated?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="appint_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Zoho Books & Accounting -->
+    <details id="sec_books" hidden>
+      <summary>Zoho Books & Accounting</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="books_setup"/> Initial Books setup</label>
+        <label><input type="checkbox" name="books_migration"/> Migration from other accounting software</label>
+        <label><input type="checkbox" name="books_automation"/> Automated invoicing & billing</label>
+        <label><input type="checkbox" name="books_inventory"/> Inventory accounting</label>
+        <label><input type="checkbox" name="books_tax"/> Tax compliance & reporting</label>
+        <label><input type="checkbox" name="books_integration"/> Integration with CRM/other apps</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Current Accounting System<input type="text" name="books_current" placeholder="QuickBooks, Xero, etc."/></label></div>
+        <div><label class="block">Annual Revenue Range<select name="books_revenue"><option value="">-- Select --</option><option value="under500k">Under $500k</option><option value="500k-2m">$500k - $2M</option><option value="2m-10m">$2M - $10M</option><option value="over10m">Over $10M</option></select></label></div>
+        <div><label class="block">Monthly Transaction Volume<input type="number" name="books_transactions" min="1" step="1" placeholder="e.g., 200"/></label></div>
+      </div>
+      <label class="block">Accounting Requirements & Complexity<textarea name="books_requirements" placeholder="Multi-currency? Project accounting? Specific reports needed?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="books_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Credit Card Processing & Payments -->
+    <details id="sec_payments" hidden>
+      <summary>Credit Card Processing & Payments</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="payments_gateway"/> Payment gateway integration</label>
+        <label><input type="checkbox" name="payments_recurring"/> Recurring/subscription billing</label>
+        <label><input type="checkbox" name="payments_invoicing"/> Online invoice payments</label>
+        <label><input type="checkbox" name="payments_pos"/> Point of sale integration</label>
+        <label><input type="checkbox" name="payments_reconciliation"/> Automated reconciliation</label>
+        <label><input type="checkbox" name="payments_reporting"/> Payment analytics & reporting</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Payment Processor<select name="payments_processor"><option value="">-- Select --</option><option value="stripe">Stripe</option><option value="square">Square</option><option value="authorize">Authorize.net</option><option value="paypal">PayPal</option><option value="zoho_payments">Zoho Payments</option><option value="other">Other</option></select></label></div>
+        <div><label class="block">Monthly Payment Volume<input type="number" name="payments_volume" min="1" step="1" placeholder="e.g., $50,000"/></label></div>
+        <div><label class="block">Payment Types Needed<textarea name="payments_types" placeholder="One-time, recurring, deposits, etc." style="min-height:60px"></textarea></label></div>
+      </div>
+      <label class="block">Payment Processing Needs<textarea name="payments_needs" placeholder="What payment scenarios do you need to handle? Any compliance requirements?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="payments_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Zoho Creator / Portals / App Dev -->
+    <details id="sec_creator" hidden>
+      <summary>Zoho Creator / Portals / App Dev</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="creator_custom_app"/> Custom application development</label>
+        <label><input type="checkbox" name="creator_portal"/> Customer/vendor portal</label>
+        <label><input type="checkbox" name="creator_workflow"/> Custom workflows & approvals</label>
+        <label><input type="checkbox" name="creator_forms"/> Advanced forms & data collection</label>
+        <label><input type="checkbox" name="creator_mobile"/> Mobile app requirements</label>
+        <label><input type="checkbox" name="creator_integration"/> Integration with Zoho apps</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Application Type<select name="creator_type"><option value="">-- Select --</option><option value="internal">Internal business app</option><option value="customer">Customer portal</option><option value="vendor">Vendor/supplier portal</option><option value="employee">Employee self-service</option><option value="custom">Custom solution</option></select></label></div>
+        <div><label class="block">Expected Portal Users<input type="number" name="creator_users" min="1" step="1" placeholder="e.g., 100"/></label></div>
+        <div><label class="block">Complexity Level<select name="creator_complexity"><option value="">-- Select --</option><option value="simple">Simple (forms + basic logic)</option><option value="moderate">Moderate (workflows + integrations)</option><option value="complex">Complex (custom logic + APIs)</option></select></label></div>
+      </div>
+      <label class="block">Application Requirements<textarea name="creator_requirements" placeholder="Describe what the app/portal needs to do. What problems does it solve?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="creator_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Zoho Campaigns / Marketing Automation -->
+    <details id="sec_campaigns" hidden>
+      <summary>Zoho Campaigns / Marketing Automation</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="campaigns_email"/> Email marketing campaigns</label>
+        <label><input type="checkbox" name="campaigns_automation"/> Marketing automation workflows</label>
+        <label><input type="checkbox" name="campaigns_segmentation"/> List segmentation & targeting</label>
+        <label><input type="checkbox" name="campaigns_landing"/> Landing pages & forms</label>
+        <label><input type="checkbox" name="campaigns_sms"/> SMS marketing</label>
+        <label><input type="checkbox" name="campaigns_social"/> Social media marketing</label>
+        <label><input type="checkbox" name="campaigns_ab"/> A/B testing & optimization</label>
+        <label><input type="checkbox" name="campaigns_analytics"/> Analytics & reporting</label>
+      </div>
+
+      <div class="grid-3" style="margin-top:12px">
+        <div>
+          <label class="block">Project Type</label>
+          <select name="campaigns_project_type">
+            <option value="">-- Select --</option>
+            <option value="new_setup">New Zoho Campaigns setup</option>
+            <option value="migration">Migration from another platform</option>
+            <option value="optimization">Optimize existing Campaigns</option>
+            <option value="expansion">Expand marketing automation</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">Current Marketing Platform</label>
+          <select name="campaigns_current_platform">
+            <option value="">-- Select --</option>
+            <option value="none">Not using marketing automation</option>
+            <option value="mailchimp">Mailchimp</option>
+            <option value="hubspot">HubSpot</option>
+            <option value="constant_contact">Constant Contact</option>
+            <option value="activecampaign">ActiveCampaign</option>
+            <option value="marketo">Marketo</option>
+            <option value="pardot">Pardot/Salesforce Marketing Cloud</option>
+            <option value="sendinblue">Brevo (Sendinblue)</option>
+            <option value="klaviyo">Klaviyo</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">Contact List Size</label>
+          <select name="campaigns_list_size">
+            <option value="">-- Select --</option>
+            <option value="under1k">Under 1,000</option>
+            <option value="1k-5k">1,000 - 5,000</option>
+            <option value="5k-10k">5,000 - 10,000</option>
+            <option value="10k-25k">10,000 - 25,000</option>
+            <option value="25k-50k">25,000 - 50,000</option>
+            <option value="50k-100k">50,000 - 100,000</option>
+            <option value="over100k">Over 100,000</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top:12px">
+        <div>
+          <label class="block">Monthly Email Volume</label>
+          <select name="campaigns_email_volume">
+            <option value="">-- Select --</option>
+            <option value="under10k">Under 10,000</option>
+            <option value="10k-50k">10,000 - 50,000</option>
+            <option value="50k-100k">50,000 - 100,000</option>
+            <option value="100k-500k">100,000 - 500,000</option>
+            <option value="over500k">Over 500,000</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">CRM Integration Needed?</label>
+          <select name="campaigns_crm_integration">
+            <option value="">-- Select --</option>
+            <option value="zoho_crm">Yes - Zoho CRM</option>
+            <option value="other_crm">Yes - Other CRM</option>
+            <option value="no_crm">No CRM integration</option>
+            <option value="future">Not now, but in future</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">Lead Scoring Needed?</label>
+          <select name="campaigns_lead_scoring">
+            <option value="">-- Select --</option>
+            <option value="yes">Yes - Essential</option>
+            <option value="nice">Nice to have</option>
+            <option value="no">Not needed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:12px">
+        <div>
+          <span class="facet">Migration Requirements (if applicable)</span>
+          <label><input type="checkbox" name="campaigns_migrate_lists"/> Migrate contact lists</label>
+          <label><input type="checkbox" name="campaigns_migrate_templates"/> Migrate email templates</label>
+          <label><input type="checkbox" name="campaigns_migrate_segments"/> Migrate segments/tags</label>
+          <label><input type="checkbox" name="campaigns_migrate_automation"/> Recreate automation workflows</label>
+          <label><input type="checkbox" name="campaigns_migrate_history"/> Preserve campaign history</label>
+        </div>
+        <div>
+          <span class="facet">Compliance & Deliverability</span>
+          <label><input type="checkbox" name="campaigns_gdpr"/> GDPR compliance required</label>
+          <label><input type="checkbox" name="campaigns_canspam"/> CAN-SPAM compliance required</label>
+          <label><input type="checkbox" name="campaigns_double_optin"/> Double opt-in setup</label>
+          <label><input type="checkbox" name="campaigns_deliverability"/> Deliverability optimization</label>
+          <label><input type="checkbox" name="campaigns_domain"/> Custom domain setup (DKIM/SPF)</label>
+        </div>
+      </div>
+
+      <label class="block" style="margin-top:12px">Campaign Goals & Use Cases<textarea name="campaigns_goals" placeholder="What marketing outcomes are you trying to achieve? (e.g., nurture leads, customer retention, product launches, webinar promotion)"></textarea></label>
+
+      <label class="block">Current Challenges & Pain Points<textarea name="campaigns_challenges" placeholder="What's not working with your current marketing approach? What manual processes need automation?"></textarea></label>
+
+      <label class="block">Automation Workflow Needs<textarea name="campaigns_workflows" placeholder="Describe key automation workflows you need (e.g., welcome series, abandoned cart, lead nurturing, re-engagement)"></textarea></label>
+
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Marketing Team Size<input type="number" name="campaigns_team_size" min="0" step="1" placeholder="e.g., 2"/></label></div>
+        <div><label class="block">Technical Skill Level<select name="campaigns_skill_level"><option value="">-- Select --</option><option value="beginner">Beginner - Need guidance</option><option value="intermediate">Intermediate - Some experience</option><option value="advanced">Advanced - Very experienced</option></select></label></div>
+        <div><label class="block">Priority Timeline<select name="campaigns_timeline"><option value="">-- Select --</option><option value="urgent">Urgent - ASAP</option><option value="1month">Within 1 month</option><option value="1-3months">1-3 months</option><option value="flexible">Flexible</option></select></label></div>
+      </div>
+
+      <label class="block">Integration Requirements<textarea name="campaigns_integrations" placeholder="What other systems need to integrate? (e.g., e-commerce, webinar platforms, events, social media)"></textarea></label>
+
+      <label class="block">Additional Notes<textarea name="campaigns_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Workflow & Process -->
+    <details id="sec_workflow" hidden>
+      <summary>Workflow & Process</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="workflow_automation"/> Process automation</label>
+        <label><input type="checkbox" name="workflow_approvals"/> Approval workflows</label>
+        <label><input type="checkbox" name="workflow_notifications"/> Smart notifications & alerts</label>
+        <label><input type="checkbox" name="workflow_assignments"/> Automated task assignments</label>
+        <label><input type="checkbox" name="workflow_escalation"/> Escalation rules</label>
+        <label><input type="checkbox" name="workflow_integration"/> Cross-app workflows</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Primary Process to Automate<textarea name="workflow_primary" placeholder="e.g., Lead qualification, order approval" style="min-height:60px"></textarea></label></div>
+        <div><label class="block">Current Manual Steps<textarea name="workflow_manual" placeholder="What's done manually today?" style="min-height:60px"></textarea></label></div>
+        <div><label class="block">Expected Time Savings<input type="text" name="workflow_savings" placeholder="e.g., 10 hours/week"/></label></div>
+      </div>
+      <label class="block">Workflow Requirements & Business Rules<textarea name="workflow_requirements" placeholder="Describe the process flow, decision points, and business rules"></textarea></label>
+      <label class="block">Additional Notes<textarea name="workflow_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- AI Adoption -->
+    <details id="sec_ai" hidden>
+      <summary>AI Adoption</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="ai_zia"/> Zoho Zia implementation</label>
+        <label><input type="checkbox" name="ai_predictions"/> Predictive analytics</label>
+        <label><input type="checkbox" name="ai_chatbot"/> AI chatbots & virtual assistants</label>
+        <label><input type="checkbox" name="ai_recommendations"/> Smart recommendations</label>
+        <label><input type="checkbox" name="ai_sentiment"/> Sentiment analysis</label>
+        <label><input type="checkbox" name="ai_custom"/> Custom AI/ML models</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Primary AI Use Case<select name="ai_usecase"><option value="">-- Select --</option><option value="sales">Sales predictions & lead scoring</option><option value="support">Customer support automation</option><option value="analytics">Data insights & analytics</option><option value="automation">Process automation</option><option value="personalization">Personalization</option><option value="other">Other</option></select></label></div>
+        <div><label class="block">Data Readiness<select name="ai_readiness"><option value="">-- Select --</option><option value="clean">Data is clean & ready</option><option value="needs_work">Needs cleanup/organization</option><option value="starting">Starting from scratch</option></select></label></div>
+        <div><label class="block">AI Maturity Level<select name="ai_maturity"><option value="">-- Select --</option><option value="exploring">Just exploring AI</option><option value="pilot">Ready to pilot</option><option value="scaling">Ready to scale</option></select></label></div>
+      </div>
+      <label class="block">AI Objectives & Expected Outcomes<textarea name="ai_objectives" placeholder="What do you want AI to help you achieve? What decisions should it help with?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="ai_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Digital Transformation Advisory -->
+    <details id="sec_digital" hidden>
+      <summary>Digital Transformation Advisory</summary>
+      <div class="row" style="margin-top:12px">
+        <label><input type="checkbox" name="digital_assessment"/> Current state assessment</label>
+        <label><input type="checkbox" name="digital_strategy"/> Digital strategy development</label>
+        <label><input type="checkbox" name="digital_roadmap"/> Technology roadmap</label>
+        <label><input type="checkbox" name="digital_change"/> Change management</label>
+        <label><input type="checkbox" name="digital_training"/> Organization training</label>
+        <label><input type="checkbox" name="digital_kpi"/> KPI development & tracking</label>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Organization Size<select name="digital_size"><option value="">-- Select --</option><option value="small">1-50 employees</option><option value="medium">51-200 employees</option><option value="large">201-1000 employees</option><option value="enterprise">1000+ employees</option></select></label></div>
+        <div><label class="block">Industry/Sector<input type="text" name="digital_industry" placeholder="e.g., Manufacturing, SaaS"/></label></div>
+        <div><label class="block">Transformation Stage<select name="digital_stage"><option value="">-- Select --</option><option value="planning">Planning/exploring</option><option value="starting">Just starting</option><option value="progress">In progress</option><option value="optimizing">Optimizing existing</option></select></label></div>
+      </div>
+      <label class="block">Current Challenges & Transformation Goals<textarea name="digital_challenges" placeholder="What's driving this transformation? What challenges are you facing?"></textarea></label>
+      <label class="block">Success Metrics<textarea name="digital_metrics" placeholder="How will you measure success? What outcomes are you targeting?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="digital_notes" placeholder="Key requirements, constraints, or goals"></textarea></label>
+    </details>
+
+    <!-- Other / Custom -->
+    <details id="sec_other" hidden>
+      <summary>Other / Custom</summary>
+      <label class="block" style="margin-top:12px">Project Description<textarea name="other_description" placeholder="Describe your project, requirements, or questions" style="min-height:100px"></textarea></label>
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Estimated Project Size<select name="other_size"><option value="">-- Select --</option><option value="small">Small (< 40 hours)</option><option value="medium">Medium (40-160 hours)</option><option value="large">Large (160+ hours)</option><option value="unknown">Unknown</option></select></label></div>
+        <div><label class="block">Urgency Level<select name="other_urgency"><option value="">-- Select --</option><option value="low">Low - Planning phase</option><option value="medium">Medium - Next quarter</option><option value="high">High - ASAP</option></select></label></div>
+        <div><label class="block">Technical Complexity<select name="other_complexity"><option value="">-- Select --</option><option value="low">Low - Configuration</option><option value="medium">Medium - Custom development</option><option value="high">High - Complex integrations</option></select></label></div>
+      </div>
+      <label class="block">Key Requirements<textarea name="other_requirements" placeholder="What are the must-haves for this project?"></textarea></label>
+      <label class="block">Additional Notes<textarea name="other_notes" placeholder="Any other context, constraints, or information we should know"></textarea></label>
+    </details>
+
+    <!-- Goals, Budget & Timeline -->
+    <section class="card">
+      <h2>Goals, Budget & Timeline</h2>
+      <span class="sub">Help us understand your broader objectives and constraints</span>
+
+      <label class="block">Overall Goals & Success Criteria<textarea id="goals" name="goals" placeholder="What are the key outcomes you're aiming for? Include any specific metrics or success criteria."></textarea></label>
+
+      <div class="grid-3" style="margin-top:12px">
+        <div><label class="block">Budget Range<input type="text" id="budget" name="budget" placeholder="e.g., $10k-$25k or Flexible"/></label></div>
+        <div><label class="block">Desired Start Date<input type="date" id="start_date" name="start_date"/></label></div>
+        <div><label class="block">Target Completion Date<input type="date" id="completion_date" name="completion_date"/></label></div>
+      </div>
+
+      <label class="block" style="margin-top:12px">Budget Approval Process<textarea id="budget_approval" name="budget_approval" placeholder="Describe your approval process and decision-makers" style="min-height:60px"></textarea></label>
+    </section>
+
+    <!-- Additional Context -->
+    <section class="card">
+      <h2>Anything Else We Should Know?</h2>
+      <span class="sub">Context, constraints, deadlines, team info, or special requirements</span>
+      <textarea id="additional_notes" name="additional_notes" placeholder="Any extra details, attachments needed, or clarifications" style="margin-top:8px"></textarea>
+
+      <div class="actions">
+        <button type="button" class="ghost" id="resetBtn">Reset Form</button>
+        <button type="button" class="ghost" id="importJsonBtn">Import JSON</button>
+        <button type="button" class="ghost" onclick="window.print()">Print / Save as PDF</button>
+        <button type="button" class="ghost" id="downloadTxtBtn">Download Text</button>
+        <button type="button" class="primary" id="copyJsonBtn">Copy JSON</button>
+        <button type="button" class="accent" id="downloadJsonBtn">Download JSON</button>
+      </div>
+      <input type="file" id="jsonFileInput" accept="application/json,.json" style="display:none;" />
+
+      <p class="hint">Export your responses as JSON to email before the meeting. We can import, add notes, and review together.</p>
+    </section>
+  </main>
+
+  <!-- Service Levels Modal -->
+  <div id="serviceLevelsModal" class="enable-modal">
+    <div class="enable-modal-content">
+      <div class="enable-modal-header">
+        <h3>Enable Service Levels Overview</h3>
+        <span class="enable-close" id="closeModal">&times;</span>
+      </div>
+      <div class="enable-modal-body">
+        <p style="margin-top:0">Enable Workspace offers three distinct levels of service — <strong>Essentials</strong>, <strong>Collaborative</strong>, and <strong>Managed</strong> — designed to fit the level of partnership and support each client needs.</p>
+
+        <div class="service-tier">
+          <h4>1. Essentials — You Build, We Guide</h4>
+          <div class="tagline">Foundation tier for hands-on clients</div>
+          <p><strong>Ideal Client:</strong> Startups or lean teams who want expert setup and control execution in-house.</p>
+        </div>
+
+        <div class="service-tier">
+          <h4>2. Collaborative — We Build Together</h4>
+          <div class="tagline">Balanced partnership for growth</div>
+          <p><strong>Ideal Client:</strong> Growth-stage businesses seeking to scale operations with guidance but still maintain hands-on control.</p>
+        </div>
+
+        <div class="service-tier">
+          <h4>3. Managed — We Handle It All</h4>
+          <div class="tagline">Full-service execution</div>
+          <p><strong>Ideal Client:</strong> Scaling or resource-limited teams that want a turnkey system without internal management overhead.</p>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Enable's Role</th>
+              <th>Client's Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Essentials</strong></td>
+              <td>Setup & training</td>
+              <td>Manage daily operations</td>
+            </tr>
+            <tr>
+              <td><strong>Collaborative</strong></td>
+              <td>Build & optimize</td>
+              <td>Operate systems</td>
+            </tr>
+            <tr>
+              <td><strong>Managed</strong></td>
+              <td>Own & operate</td>
+              <td>Approve & oversee</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // Toggle sections based on project type checkboxes
+      function syncSections() {
+        const checkboxes = document.querySelectorAll('.project-toggle');
+        let selectedCount = 0;
+
+        checkboxes.forEach(function(cb) {
+          const targetId = cb.getAttribute('data-target');
+          const target = document.getElementById(targetId);
+
+          if (!target) {
+            console.warn('Target not found for ID:', targetId);
+            return;
+          }
+
+          if (cb.checked) {
+            selectedCount++;
+            target.hidden = false;
+            target.open = true;
+          } else {
+            target.hidden = true;
+            target.open = false;
+          }
+        });
+
+        const countEl = document.getElementById('selectedCount');
+        if (countEl) {
+          countEl.textContent = selectedCount + ' project type' + (selectedCount !== 1 ? 's' : '') + ' selected';
+        }
+      }
+
+      // Modal functions
+      function showModal() {
+        const modal = document.getElementById('serviceLevelsModal');
+        if (modal) modal.classList.add('active');
+      }
+
+      function hideModal() {
+        const modal = document.getElementById('serviceLevelsModal');
+        if (modal) modal.classList.remove('active');
+      }
+
+      // Form Data Collection
+      function collectFormData() {
+        const data = {
+          meta: {
+            form: 'Enable Pre-Meeting Discovery Guide',
+            version: '1.0.0',
+            generated_at: new Date().toISOString()
+          },
+          contact: {},
+          project_types: [],
+          project_details: {},
+          goals: {}
+        };
+
+        document.querySelectorAll('input, select, textarea').forEach(function(el) {
+          if (el.type === 'file') return;
+
+          if (el.type === 'checkbox') {
+            if (el.classList.contains('project-toggle')) {
+              if (el.checked) {
+                const label = el.closest('label').textContent.trim();
+                data.project_types.push(label);
+              }
+            } else if (el.name) {
+              data.project_details[el.name] = el.checked;
+            } else if (el.id) {
+              data[el.id] = el.checked;
+            }
+          } else {
+            const value = el.value.trim();
+            if (el.id) {
+              if (['company', 'name', 'email', 'phone'].includes(el.id)) {
+                if (value) data.contact[el.id] = value;
+              } else if (['goals', 'budget', 'start_date', 'completion_date', 'budget_approval', 'additional_notes'].includes(el.id)) {
+                if (value) data.goals[el.id] = value;
+              } else {
+                if (value) data[el.id] = value;
+              }
+            } else if (el.name && value) {
+              data.project_details[el.name] = value;
+            }
+          }
+        });
+
+        return data;
+      }
+
+      function populateForm(data) {
+        if (data.contact) {
+          Object.keys(data.contact).forEach(function(key) {
+            const el = document.getElementById(key);
+            if (el) el.value = data.contact[key];
+          });
+        }
+
+        ['tier', 'complexity', 'commercial_type', 'weekly_hours'].forEach(function(id) {
+          if (data[id]) {
+            const el = document.getElementById(id);
+            if (el) el.value = data[id];
+          }
+        });
+
+        if (data.goals) {
+          Object.keys(data.goals).forEach(function(key) {
+            const el = document.getElementById(key);
+            if (el) el.value = data.goals[key];
+          });
+        }
+
+        if (data.project_types && Array.isArray(data.project_types)) {
+          document.querySelectorAll('.project-toggle').forEach(function(cb) {
+            const label = cb.closest('label').textContent.trim();
+            cb.checked = data.project_types.includes(label);
+          });
+          syncSections();
+        }
+
+        if (data.project_details) {
+          setTimeout(function() {
+            Object.keys(data.project_details).forEach(function(name) {
+              const el = document.querySelector('[name="' + name + '"]');
+              if (el) {
+                if (el.type === 'checkbox') {
+                  el.checked = data.project_details[name];
+                } else {
+                  el.value = data.project_details[name];
+                }
+              }
+            });
+          }, 200);
+        }
+
+        alert('Form data loaded successfully!');
+      }
+
+      function downloadJson() {
+        try {
+          const data = collectFormData();
+          const text = JSON.stringify(data, null, 2);
+          const blob = new Blob([text], {type: 'application/json'});
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          const company = (document.getElementById('company') ? document.getElementById('company').value : 'Client') || 'Client';
+          const cleanCompany = company.trim().replace(/[^a-z0-9]/gi, '_');
+          a.download = 'Enable_Discovery_' + cleanCompany + '_' + new Date().toISOString().split('T')[0] + '.json';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+        } catch (error) {
+          const data = collectFormData();
+          const text = JSON.stringify(data, null, 2);
+          const w = window.open('', '_blank');
+          if (w) {
+            w.document.write('<pre>' + text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>');
+            w.document.close();
+          }
+        }
+      }
+
+      function downloadTxt() {
+        try {
+          const data = collectFormData();
+          const text = JSON.stringify(data, null, 2);
+          const blob = new Blob([text], {type: 'text/plain'});
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          const company = (document.getElementById('company') ? document.getElementById('company').value : 'Client') || 'Client';
+          const cleanCompany = company.trim().replace(/[^a-z0-9]/gi, '_');
+          a.download = 'Enable_Discovery_' + cleanCompany + '_' + new Date().toISOString().split('T')[0] + '.txt';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+        } catch (error) {
+          const data = collectFormData();
+          const text = JSON.stringify(data, null, 2);
+          const w = window.open('', '_blank');
+          if (w) {
+            w.document.write('<pre>' + text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>');
+            w.document.close();
+          }
+        }
+      }
+
+      function copyJSON() {
+        const text = JSON.stringify(collectFormData(), null, 2);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            alert('JSON copied to clipboard!');
+          }).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const w = window.open('', '_blank');
+        if (w) {
+          w.document.write('<pre style="white-space:pre-wrap">' + text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>');
+          w.document.close();
+        }
+      }
+
+      function importJson() {
+        const fileInput = document.getElementById('jsonFileInput');
+        if (fileInput) fileInput.click();
+      }
+
+      function handleFileImport(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const data = JSON.parse(e.target.result);
+            populateForm(data);
+          } catch (err) {
+            alert('Error reading JSON file: ' + err.message);
+          }
+        };
+        reader.readAsText(file);
+        event.target.value = '';
+      }
+
+      function resetForm() {
+        if (!confirm('Reset all fields? This cannot be undone.')) return;
+        document.querySelectorAll('input, textarea, select').forEach(function(el) {
+          if (el.type === 'checkbox') {
+            el.checked = false;
+          } else if (el.type !== 'file') {
+            el.value = '';
+          }
+        });
+        syncSections();
+      }
+
+      // Initialize
+      function init() {
+        syncSections();
+
+        // Attach checkbox listeners
+        const checkboxes = document.querySelectorAll('.project-toggle');
+        checkboxes.forEach(function(cb) {
+          cb.addEventListener('change', syncSections);
+          cb.addEventListener('click', function() {
+            setTimeout(syncSections, 10);
+          });
+        });
+
+        // Attach button listeners
+        const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+        const downloadTxtBtn = document.getElementById('downloadTxtBtn');
+        const copyJsonBtn = document.getElementById('copyJsonBtn');
+        const importJsonBtn = document.getElementById('importJsonBtn');
+        const jsonFileInput = document.getElementById('jsonFileInput');
+        const resetBtn = document.getElementById('resetBtn');
+        const showServiceLevels = document.getElementById('showServiceLevels');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modal = document.getElementById('serviceLevelsModal');
+
+        if (downloadJsonBtn) downloadJsonBtn.addEventListener('click', downloadJson);
+        if (downloadTxtBtn) downloadTxtBtn.addEventListener('click', downloadTxt);
+        if (copyJsonBtn) copyJsonBtn.addEventListener('click', copyJSON);
+        if (importJsonBtn) importJsonBtn.addEventListener('click', importJson);
+        if (jsonFileInput) jsonFileInput.addEventListener('change', handleFileImport);
+        if (resetBtn) resetBtn.addEventListener('click', resetForm);
+        if (showServiceLevels) showServiceLevels.addEventListener('click', function(e) { e.preventDefault(); showModal(); });
+        if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
+        if (modal) modal.addEventListener('click', function(event) { if (event.target === modal) hideModal(); });
+      }
+
+      // Multiple initialization approaches
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      window.addEventListener('load', init);
+
+    })();
+  </script>
+</body>
+</html>
