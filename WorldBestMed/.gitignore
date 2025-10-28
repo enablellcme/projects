@@ -1,0 +1,18 @@
+# Exclude sensitive business documents
+*.pdf
+*.json
+
+# Exclude system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Exclude editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Exclude logs
+*.log

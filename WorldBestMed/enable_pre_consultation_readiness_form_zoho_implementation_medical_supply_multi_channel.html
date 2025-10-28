@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enable Solutions • Zoho Implementation Pre‑Consultation Readiness Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --enable-navy:#005D8F; /* Primary */
+      --enable-teal:#09F781; /* Accent */
+      --enable-deep:#003D4F; /* Dark */
+      --enable-mist:#EFF4F4; /* Light */
+      --ink:#1b1f24;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--enable-mist)}
+    header{background:linear-gradient(135deg,var(--enable-navy),var(--enable-deep));color:#fff;padding:28px 20px}
+    .container{max-width:1080px;margin:0 auto;padding:0 20px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 210deg,var(--enable-teal),var(--enable-navy));display:inline-block}
+    h1{font-size:1.7rem;line-height:1.2;margin:0}
+    .sub{opacity:.95;margin-top:6px;font-weight:300}
+    main{margin:22px 0}
+    .card{background:#fff;border:1px solid #e5e9ec;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.05);padding:20px;margin-bottom:18px}
+    .card h2{font-size:1.1rem;margin:0 0 10px;color:var(--enable-deep)}
+    .help{font-size:.9rem;color:#4a5963;margin:6px 0 14px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{display:block;font-weight:600;margin:8px 0 6px}
+    input[type=text],input[type=email],input[type=url],input[type=number],textarea,select{width:100%;padding:10px 12px;border:1px solid #d6dee3;border-radius:10px;background:#fbfdfe}
+    textarea{min-height:90px}
+    .inline{display:flex;flex-wrap:wrap;gap:12px}
+    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #d6dee3;background:#fff;padding:8px 12px;border-radius:999px}
+    .pill input{margin:0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .muted{font-size:.85rem;color:#6b7b86}
+    .section-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .badge{background:var(--enable-teal);color:#053b2e;padding:4px 10px;border-radius:999px;font-weight:700;font-size:.78rem}
+    .actions{position:sticky;bottom:0;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-top:1px solid #e5e9ec;padding:12px 0;margin-top:10px}
+    .btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--enable-navy);color:#fff}
+    .btn-outline{background:#fff;border:2px solid var(--enable-navy);color:var(--enable-navy)}
+    .btn-ghost{background:transparent;color:var(--enable-deep)}
+    .req{color:#cf2a2a}
+    .hr{height:1px;background:#e9eef1;margin:12px 0}
+    .note{background:linear-gradient(135deg,rgba(0,93,143,.07),rgba(0,61,79,.07));border:1px dashed rgba(0,93,143,.35);padding:12px;border-radius:12px}
+    @media (max-width:900px){.row,.grid-3{grid-template-columns:1fr}}
+    @media print{header,.actions{display:none}body{background:#fff}.card{box-shadow:none;border-color:#d5dbe0}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>Zoho Implementation • Pre‑Consultation Readiness</h1>
+          <div class="sub">Enable Solutions — Please complete before our call (or we’ll walk through it together). 💬</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="formRoot">
+
+    <div class="card">
+      <div class="section-head">
+        <h2>Instructions</h2>
+        <span class="badge">5–10 min</span>
+      </div>
+      <p class="help">This form helps us tailor your Zoho setup (Inventory, Books, CRM, Flow, ShipStation, Desk) and accelerate <b>scoping</b>. You can fill it out ahead of time, or we’ll happily complete it together on the call and you can finish any remaining details afterward. Use the <b>Save</b> buttons below to export your answers or simply <b>Print to PDF</b>.</p>
+      <div class="note muted">Tip: Your responses auto‑save to your browser. You can close and return later from the same device.</div>
+    </div>
+
+    <!-- Company & Contacts -->
+    <div class="card">
+      <h2>1) Company & Contacts</h2>
+      <div class="row">
+        <div>
+          <label>Company Name <span class="req">*</span></label>
+          <input type="text" id="company_name" required>
+        </div>
+        <div>
+          <label>Primary Website</label>
+          <input type="url" id="company_website" placeholder="https://">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Primary Contact (Project Lead) <span class="req">*</span></label>
+          <input type="text" id="primary_contact" required>
+        </div>
+        <div>
+          <label>Email <span class="req">*</span></label>
+          <input type="email" id="primary_email" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Role/Title</label>
+          <input type="text" id="primary_role">
+        </div>
+        <div>
+          <label>Phone</label>
+          <input type="text" id="primary_phone">
+        </div>
+      </div>
+    </div>
+
+    <!-- Channels & Storefronts -->
+    <div class="card">
+      <h2>2) Sales Channels & Storefronts</h2>
+      <p class="help">List each online site and 4‑star storefronts/marketplaces. Note whether each is existing or planned.</p>
+      <div class="grid-3" id="stores">
+        <!-- Dynamic rows injected -->
+      </div>
+      <div class="inline" style="margin-top:10px">
+        <button class="btn btn-outline" type="button" onclick="addStore()">＋ Add Storefront</button>
+      </div>
+      <div class="hr"></div>
+      <label>Which platform(s) power your stores?</label>
+      <div class="inline">
+        <label class="pill"><input type="checkbox" value="Shopify" name="platform">Shopify</label>
+        <label class="pill"><input type="checkbox" value="WooCommerce" name="platform">WooCommerce</label>
+        <label class="pill"><input type="checkbox" value="BigCommerce" name="platform">BigCommerce</label>
+        <label class="pill"><input type="checkbox" value="Custom" name="platform">Custom</label>
+        <label class="pill"><input type="checkbox" value="Amazon" name="platform">Amazon</label>
+        <label class="pill"><input type="checkbox" value="eBay" name="platform">eBay</label>
+        <label class="pill"><input type="checkbox" value="Other" name="platform">Other</label>
+      </div>
+      <label style="margin-top:10px">Notes / Channel distinctions (audience, geography, product focus)</label>
+      <textarea id="channel_notes"></textarea>
+    </div>
+
+    <!-- Shipping & Fulfillment -->
+    <div class="card">
+      <h2>3) Shipping & Fulfillment (ShipStation / Zoho Flow)</h2>
+      <div class="row">
+        <div>
+          <label>Do you use ShipStation today?</label>
+          <select id="shipstation_use"><option value="">Select…</option><option>Yes</option><option>No</option><option>Planning</option></select>
+        </div>
+        <div>
+          <label>What connects orders to shipping?</label>
+          <select id="shipping_connector"><option value="">Select…</option><option>ShipStation only</option><option>Zoho Flow only</option><option>Both ShipStation & Zoho Flow</option><option>Other</option></select>
+        </div>
+      </div>
+      <label>Describe your current order → shipment flow (systems involved, who triggers, batching, labels, carriers).</label>
+      <textarea id="ship_flow"></textarea>
+      <label>Any special rules? (e.g., clinic batch shipments, temperature‑sensitive items, international)</label>
+      <textarea id="ship_rules"></textarea>
+    </div>
+
+    <!-- Inventory & Warehouses -->
+    <div class="card">
+      <h2>4) Inventory & Warehouses</h2>
+      <div class="row">
+        <div>
+          <label>Will Zoho Inventory be the product & stock master for all stores?</label>
+          <select id="inventory_master"><option value="">Select…</option><option>Yes</option><option>No</option><option>Unsure</option></select>
+        </div>
+        <div>
+          <label>Warehouses / Fulfillment locations (count)</label>
+          <input type="number" id="warehouse_count" min="0">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Total inventory items (SKUs)</label>
+          <input type="number" id="inventory_items" min="0" placeholder="e.g., 6,500">
+        </div>
+        <div>
+          <label>Active SKUs available online</label>
+          <input type="number" id="inventory_items_active" min="0" placeholder="e.g., 3,200">
+        </div>
+      </div>
+      <label>List locations and roles (e.g., Corona HQ, 3PL, regional hubs)</label>
+      <textarea id="warehouse_list"></textarea>
+      <div class="inline" style="margin-top:8px">
+        <label class="pill"><input type="checkbox" name="inv" value="dropship">Drop‑ship warehouses/vendors</label>
+      </div>
+      <div class="row">
+        <div>
+          <label>Approx. % of orders drop‑shipped</label>
+          <input type="number" id="dropship_percent" min="0" max="100" placeholder="e.g., 35">
+        </div>
+        <div>
+          <label>Drop‑ship vendor/warehouse list & routing rules</label>
+          <textarea id="dropship_list" placeholder="Vendor name, products, region, SLAs"></textarea>
+        </div>
+      </div>
+      <div class="inline">
+        <label class="pill"><input type="checkbox" name="inv" value="barcodes">Barcode/scanner picking</label>
+        <label class="pill"><input type="checkbox" name="inv" value="bundles">Kits/Bundles</label>
+        <label class="pill"><input type="checkbox" name="inv" value="backorders">Backorders</label>
+        <label class="pill"><input type="checkbox" name="inv" value="lot">Lot/Batch tracking</label>
+        <label class="pill"><input type="checkbox" name="inv" value="serial">Serial numbers</label>
+        <label class="pill"><input type="checkbox" name="inv" value="expiry">Expiry date tracking</label>
+      </div>
+      <label>Reorder triggers / stock rules</label>
+      <textarea id="reorder_rules"></textarea>
+    </div>
+
+    <!-- Products & Catalog -->
+    <div class="card">
+      <h2>5) Products & Catalog</h2>
+      <label>Product categories & attributes (e.g., test strips, CGM sensors, sizes, variants)</label>
+      <textarea id="product_attrs"></textarea>
+      <div class="row">
+        <div>
+          <label>Price lists / B2B tiers needed?</label>
+          <select id="price_tiers"><option value="">Select…</option><option>Yes</option><option>No</option><option>Maybe later</option></select>
+        </div>
+        <div>
+          <label>Regulated items requiring Rx or documentation?</label>
+          <select id="regulated"><option value="">Select…</option><option>Yes</option><option>No</option><option>Some SKUs</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finance & Zoho Books -->
+    <div class="card">
+      <h2>6) Finance & Zoho Books</h2>
+      <div class="row">
+        <div>
+          <label>Current accounting system</label>
+          <select id="current_books"><option value="">Select…</option><option>QuickBooks Online</option><option>QuickBooks Desktop</option><option>Xero</option><option>Zoho Books</option><option>Other</option></select>
+        </div>
+        <div>
+          <label>Bank feeds needed?</label>
+          <select id="bank_feeds"><option value="">Select…</option><option>Yes</option><option>No</option></select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Purchase Orders & Bills: current process</label>
+          <textarea id="po_bills"></textarea>
+        </div>
+        <div>
+          <label>Refund/Return process (incl. regulated items)</label>
+          <textarea id="refunds"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Tax jurisdictions / international sales</label>
+          <textarea id="taxes"></textarea>
+        </div>
+        <div>
+          <label>Financial reports needed (monthly)</label>
+          <textarea id="reports"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subscriptions -->
+    <div class="card">
+      <h2>7) Subscriptions & Recurring Orders</h2>
+      <div class="row">
+        <div>
+          <label>Do you offer subscribe‑and‑save style orders?</label>
+          <select id="subs"><option value="">Select…</option><option>Yes</option><option>No</option><option>Planning</option></select>
+        </div>
+        <div>
+          <label>Preferred tooling</label>
+          <select id="subs_tool"><option value="">Select…</option><option>Zoho Subscriptions</option><option>Storefront app/plugin</option><option>Custom</option><option>Undecided</option></select>
+        </div>
+      </div>
+      <label>Subscription rules (billing cadence, proration, inventory allocation)</label>
+      <textarea id="subs_notes"></textarea>
+    </div>
+
+    <!-- CRM -->
+    <div class="card">
+      <h2>8) CRM & Account Management</h2>
+      <div class="row">
+        <div>
+          <label>Include Zoho CRM in this phase?</label>
+          <select id="crm_phase"><option value="">Select…</option><option>Yes (Phase A)</option><option>Later (Phase B)</option><option>Unsure</option></select>
+        </div>
+        <div>
+          <label>CRM use cases</label>
+          <select id="crm_use"><option value="">Select…</option><option>Wholesale account management</option><option>Quoting & pricing</option><option>Lead & pipeline mgmt</option><option>All of the above</option><option>Other</option></select>
+        </div>
+      </div>
+      <label>B2B relationships (clinics, insurers, manufacturers) and needed fields/workflows</label>
+      <textarea id="crm_notes"></textarea>
+    </div>
+
+    <!-- Support -->
+    <div class="card">
+      <h2>9) Support • Zoho Desk (Phase B)</h2>
+      <div class="row">
+        <div>
+          <label>Current support channel(s)</label>
+          <select id="support_channels"><option>Email</option><option>Phone</option><option>Shared inbox</option><option>Ticketing system</option><option>Mixed</option></select>
+        </div>
+        <div>
+          <label>Tickets per day (approx.)</label>
+          <input type="number" id="tickets" min="0">
+        </div>
+      </div>
+      <label>Top support types & SLAs</label>
+      <textarea id="support_notes"></textarea>
+    </div>
+
+    <!-- Migration & Integrations -->
+    <div class="card">
+      <h2>10) Data Migration & Integrations</h2>
+      <label>Legacy systems and data sources to migrate (products, customers, orders, vendors, price lists)</label>
+      <textarea id="migrate"></textarea>
+      <label>Other tools to integrate (payments, EDI, 3PL, email, analytics)</label>
+      <textarea id="integrations"></textarea>
+    </div>
+
+    <!-- Automation & Reporting -->
+    <div class="card">
+      <h2>11) Automation & Reporting</h2>
+      <label>Manual tasks to automate first (top 3)</label>
+      <textarea id="automation"></textarea>
+      <label>KPIs / dashboards that matter most (90‑day focus)</label>
+      <textarea id="kpis"></textarea>
+    </div>
+
+    <!-- Security & Compliance -->
+    <div class="card">
+      <h2>12) Security & Compliance</h2>
+      <div class="inline">
+        <label class="pill"><input type="checkbox" name="sec" value="rx">Prescription‑restricted items</label>
+        <label class="pill"><input type="checkbox" name="sec" value="hipaa">HIPAA considerations (PHI)</label>
+        <label class="pill"><input type="checkbox" name="sec" value="fda">FDA / device compliance</label>
+        <label class="pill"><input type="checkbox" name="sec" value="audit">Audit logs & approvals needed</label>
+      </div>
+      <label>Notes (documentation requirements, storage/retention)</label>
+      <textarea id="compliance_notes"></textarea>
+    </div>
+
+    <!-- Phasing & Success -->
+    <div class="card">
+      <h2>13) Phasing, Timeline & Success Metrics</h2>
+      <div class="row">
+        <div>
+          <label>Target go‑live window</label>
+          <input type="text" id="timeline" placeholder="e.g., Pilot in 6 weeks; full rollout in 90 days">
+        </div>
+        <div>
+          <label>Engagement preference</label>
+          <select id="model"><option value="">Select…</option><option>Fixed‑scope project</option><option>Subscription (fractional team)</option><option>Time & Materials</option><option>Undecided</option></select>
+        </div>
+      </div>
+      <label>Define success in the first 90 days (speed, accuracy, automation, CX)</label>
+      <textarea id="success"></textarea>
+    </div>
+
+    <!-- Stakeholders -->
+    <div class="card">
+      <h2>14) Stakeholders</h2>
+      <div class="grid-3" id="people"></div>
+      <div class="inline" style="margin-top:10px">
+        <button class="btn btn-outline" type="button" onclick="addPerson()">＋ Add Stakeholder</button>
+      </div>
+    </div>
+
+    <!-- Final -->
+    <div class="card">
+      <h2>Final Notes</h2>
+      <textarea id="final_notes" placeholder="Anything else we should know?"></textarea>
+      <p class="muted" style="margin-top:10px">By submitting or returning this form, you consent to Enable Solutions using this information to prepare your discovery session and proposed approach.</p>
+    </div>
+
+    <div class="actions">
+      <div class="container inline" style="justify-content:flex-end">
+        <button class="btn btn-ghost" type="button" onclick="resetForm()">Reset</button>
+        <button class="btn btn-outline" type="button" onclick="downloadJSON()">Save Responses (.json)</button>
+        <button class="btn btn-primary" type="button" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // --- Dynamic rows ---
+    const storesEl = document.getElementById('stores');
+    const peopleEl = document.getElementById('people');
+
+    function storeRow(i){
+      return `<div class="card" style="padding:14px">
+        <div class="row">
+          <div>
+            <label>Storefront Name</label>
+            <input type="text" data-key="stores.${i}.name">
+          </div>
+          <div>
+            <label>URL</label>
+            <input type="url" placeholder="https://" data-key="stores.${i}.url">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Status</label>
+            <select data-key="stores.${i}.status"><option>Existing</option><option>Planned</option><option>Evaluating</option></select>
+          </div>
+          <div>
+            <label>Platform</label>
+            <input type="text" placeholder="Shopify, Woo, Amazon…" data-key="stores.${i}.platform">
+          </div>
+        </div>
+        <label>Notes</label>
+        <textarea data-key="stores.${i}.notes"></textarea>
+        <div class="inline" style="margin-top:8px"><button class="btn btn-ghost" type="button" onclick="removeStore(${i})">Remove</button></div>
+      </div>`
+    }
+
+    function personRow(i){
+      return `<div class="card" style="padding:14px">
+        <div class="row">
+          <div>
+            <label>Name</label>
+            <input type="text" data-key="people.${i}.name">
+          </div>
+          <div>
+            <label>Role</label>
+            <input type="text" data-key="people.${i}.role" placeholder="Finance, Ops, Logistics, IT, Support">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Email</label>
+            <input type="email" data-key="people.${i}.email">
+          </div>
+          <div>
+            <label>Phone</label>
+            <input type="text" data-key="people.${i}.phone">
+          </div>
+        </div>
+        <div class="inline" style="margin-top:8px"><button class="btn btn-ghost" type="button" onclick="removePerson(${i})">Remove</button></div>
+      </div>`
+    }
+
+    function addStore(){
+      const idx = (getState().stores || []).length;
+      const s = getState();
+      s.stores = s.stores || [];
+      s.stores.push({});
+      setState(s);
+      renderStores();
+    }
+    function removeStore(i){
+      const s = getState();
+      if(Array.isArray(s.stores)) s.stores.splice(i,1);
+      setState(s); renderStores();
+    }
+    function renderStores(){
+      const s = getState();
+      storesEl.innerHTML = '';
+      (s.stores||[]).forEach((_,i)=>{ storesEl.insertAdjacentHTML('beforeend', storeRow(i)); });
+      bindInputs();
+    }
+
+    function addPerson(){
+      const s = getState();
+      s.people = s.people || [];
+      s.people.push({});
+      setState(s); renderPeople();
+    }
+    function removePerson(i){
+      const s = getState();
+      if(Array.isArray(s.people)) s.people.splice(i,1);
+      setState(s); renderPeople();
+    }
+    function renderPeople(){
+      const s = getState();
+      peopleEl.innerHTML = '';
+      (s.people||[]).forEach((_,i)=>{ peopleEl.insertAdjacentHTML('beforeend', personRow(i)); });
+      bindInputs();
+    }
+
+    // --- State management (localStorage) ---
+    const KEY='enable_readiness_v1';
+    function getState(){ try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}} }
+    function setState(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
+
+    function bindInputs(){
+      document.querySelectorAll('input[data-key], textarea[data-key], select[data-key]').forEach(el=>{
+        const key = el.getAttribute('data-key');
+        const val = getNested(getState(), key);
+        if(val!==undefined) el.value = val;
+        el.addEventListener('input', ()=>{
+          const s = getState();
+          setNested(s, key, el.type==='number'?Number(el.value):el.value);
+          setState(s);
+        });
+      });
+      // Generic fields (without data-key)
+      ['company_name','company_website','primary_contact','primary_email','primary_role','primary_phone','channel_notes','shipstation_use','shipping_connector','ship_flow','ship_rules','inventory_master','warehouse_count','inventory_items','inventory_items_active','warehouse_list','dropship_percent','dropship_list','reorder_rules','product_attrs','price_tiers','regulated','current_books','bank_feeds','po_bills','refunds','taxes','reports','subs','subs_tool','subs_notes','crm_phase','crm_use','crm_notes','support_channels','tickets','support_notes','migrate','integrations','automation','kpis','compliance_notes','timeline','model','success','final_notes']
+      .forEach(id=>{
+        const el = document.getElementById(id); if(!el) return;
+        const s = getState(); if(s[id]!==undefined) el.value = s[id];
+        el.addEventListener('input',()=>{ const st=getState(); st[id]=el.value; setState(st); })
+      });
+      // Checkboxes groups
+      ['platform','inv','sec'].forEach(name=>{
+        document.querySelectorAll(`input[name="${name}"]`).forEach(cb=>{
+          const s=getState(); const arr = s[name]||[]; cb.checked = arr.includes(cb.value);
+          cb.addEventListener('change',()=>{
+            const st=getState(); st[name]=st[name]||[];
+            if(cb.checked && !st[name].includes(cb.value)) st[name].push(cb.value);
+            if(!cb.checked) st[name]=st[name].filter(v=>v!==cb.value);
+            setState(st);
+          })
+        })
+      })
+    }
+
+    function getNested(obj, path){ return path.split('.').reduce((o,k)=> (o||{})[k], obj) }
+    function setNested(obj, path, value){ const keys=path.split('.'); let cur=obj; keys.forEach((k,i)=>{ if(i===keys.length-1){cur[k]=value}else{cur[k]=cur[k]||{}; cur=cur[k]} }); }
+
+    function downloadJSON(){
+      const data = getState();
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href=url; a.download='Enable_Zoho_Readiness.json'; a.click(); URL.revokeObjectURL(url);
+    }
+
+    function resetForm(){ if(confirm('Clear all answers?')){ localStorage.removeItem(KEY); location.reload(); } }
+
+    // Init
+    (function(){
+      const s = getState();
+      // Prefill known details if not already set
+      if(!s.company_name) s.company_name = 'World Best Med';
+      if(!s.company_website) s.company_website = 'https://www.medicalsupplycorner.com';
+      if(!s.primary_contact) s.primary_contact = 'Ayesh';
+      if(!Array.isArray(s.stores)) s.stores=[];
+      if(!Array.isArray(s.people)) s.people=[];
+      if(s.stores.length===0) s.stores.push({});
+      if(s.people.length===0) s.people.push({});
+      setState(s);
+      renderStores(); renderPeople(); bindInputs();
+    })();
+  </script>
+</body>
+</html>
