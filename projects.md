@@ -498,3 +498,360 @@ WorldBestMed/
 **End of WorldBestMed Project Documentation (Day 1)**
 
 *Last updated: October 28, 2025 EOD*
+
+---
+
+---
+
+## Infrastructure: Vercel Migration & Deployment
+
+**Date Migrated:** October 28, 2025
+**Status:** ✅ Live and Operational
+**Platform:** Vercel with Custom Domain
+
+---
+
+## Migration Overview
+
+**From:** GitHub Pages (`enablellcme.github.io/projects`)
+**To:** Vercel with Custom Domain (`b2biz.dev`)
+
+### Why Migrate?
+- Professional custom domain (b2biz.dev)
+- Faster deployment pipeline
+- Better analytics and monitoring
+- Automatic deployments on git push
+- More flexible routing options
+
+---
+
+## Deployment Configuration
+
+### Platform Details
+- **Hosting:** Vercel
+- **Domain:** b2biz.dev
+- **DNS Provider:** Cloudflare
+- **Repository:** https://github.com/enablellcme/projects
+- **Branch:** main
+- **Auto-Deploy:** ✅ Enabled (deploys automatically on push to main)
+
+### Vercel Project Settings
+- **Framework Preset:** Other (static HTML files)
+- **Root Directory:** `./`
+- **Build Command:** None (static files)
+- **Output Directory:** None (serves from root)
+- **Install Command:** None
+
+### DNS Configuration (Cloudflare)
+```
+Type: A
+Name: @
+Content: 76.76.21.21
+Proxy: OFF (DNS only)
+
+Type: CNAME
+Name: www
+Content: cname.vercel-dns.com
+Proxy: OFF (DNS only)
+```
+
+**Note:** Proxy must be OFF (gray cloud) for Vercel to work correctly.
+
+---
+
+## Live URLs - All Projects
+
+### Merchant Support - Zoho CRM Migration
+```
+https://b2biz.dev/merchant-support/Pre-Quote.html
+```
+**Legacy URL:** `https://enablellcme.github.io/projects/merchant-support/Pre-Quote.html`
+
+---
+
+### WorldBestMed - Zoho Implementation Readiness
+```
+https://b2biz.dev/WorldBestMed/index.html
+```
+**Full Form:**
+```
+https://b2biz.dev/WorldBestMed/enable_pre_consultation_readiness_form_zoho_implementation_medical_supply_multi_channel.html
+```
+
+---
+
+### A1Security - Pre-Quote Clarification Guide
+```
+https://b2biz.dev/A1Security/pre-quote-clarification-guide.html
+```
+**Note:** Renamed from "A1 Security" to "A1Security" (removed space) on October 28, 2025
+**Old URL (deprecated):** `https://enablellcme.github.io/projects/A1%20Security/pre-quote-clarification-guide.html`
+
+---
+
+### ANS - Enable Solutions Presentation
+```
+https://b2biz.dev/ANS/enable-solutions-presentation.html
+```
+
+---
+
+### MCG - Chatbot
+```
+https://b2biz.dev/MCG/index.html
+```
+
+---
+
+### Office/DecisionGuide - Advisory Decision Guide
+```
+https://b2biz.dev/Office/DecisionGuide/index.html
+https://b2biz.dev/Office/DecisionGuide/advisory-decision-guide-zoho-optimized-v2.html
+```
+
+---
+
+### Root Level - Presentation
+```
+https://b2biz.dev/enable-solutions-presentation.html
+```
+
+---
+
+## Repository Structure
+
+```
+projects/
+├── merchant-support/
+│   ├── Pre-Quote.html
+│   └── README.md
+├── WorldBestMed/
+│   ├── index.html
+│   ├── enable_pre_consultation_readiness_form_zoho_implementation_medical_supply_multi_channel.html
+│   ├── README.md
+│   └── DEPLOY.md
+├── A1Security/
+│   └── pre-quote-clarification-guide.html
+├── ANS/
+│   ├── enable-solutions-presentation.html
+│   └── README.md
+├── MCG/
+│   └── index.html
+├── Office/
+│   └── DecisionGuide/
+│       ├── index.html
+│       ├── advisory-decision-guide-zoho-optimized-v2.html
+│       └── README.md
+├── enable-solutions-presentation.html
+└── projects.md
+```
+
+---
+
+## Deployment Workflow
+
+### Automatic Deployment Process
+1. Make changes locally
+2. Commit to git
+3. Push to GitHub (`git push origin main`)
+4. Vercel automatically detects the push
+5. Vercel builds and deploys (1-2 minutes)
+6. Changes live on b2biz.dev
+
+### Manual Deployment (if needed)
+1. Go to Vercel Dashboard: https://vercel.com/dashboard
+2. Select "Mike's projects" project
+3. Click "Deployments" tab
+4. Click "Redeploy" on any deployment
+
+---
+
+## Vercel Dashboard Access
+
+**Project Dashboard:**
+```
+https://vercel.com/mikes-projects-4da77940
+```
+
+**Quick Links:**
+- Deployments: https://vercel.com/mikes-projects-4da77940/deployments
+- Settings: https://vercel.com/mikes-projects-4da77940/settings
+- Domains: https://vercel.com/mikes-projects-4da77940/settings/domains
+
+---
+
+## Migration Timeline (October 28, 2025)
+
+| Time | Action | Status |
+|------|--------|--------|
+| Start | Verified GitHub repository structure | ✅ |
+| Step 1 | Connected GitHub repository to Vercel | ✅ |
+| Step 2 | Configured Vercel project settings | ✅ |
+| Step 3 | Added custom domain b2biz.dev | ✅ |
+| Step 4 | Configured Cloudflare DNS | ✅ |
+| Step 5 | Tested deployment URLs | ✅ |
+| Step 6 | Renamed A1 Security → A1Security | ✅ |
+| Complete | All projects live on b2biz.dev | ✅ |
+
+---
+
+## GitHub Pages (Legacy)
+
+**Status:** Still active for backward compatibility
+
+GitHub Pages continues to serve files at:
+```
+https://enablellcme.github.io/projects/
+```
+
+### Why Keep GitHub Pages Active?
+- Backward compatibility for existing links
+- No cost to maintain
+- Automatic fallback if Vercel has issues
+- Historical reference
+
+### When to Use Each Platform
+- **b2biz.dev (Vercel):** Primary URLs for all new client communications
+- **GitHub Pages:** Legacy URLs only, do not share with new clients
+
+---
+
+## Client Communication Updates
+
+### Action Required
+For any clients with existing GitHub Pages URLs, send updated b2biz.dev links:
+
+**A1Security Client:**
+- Old: `enablellcme.github.io/projects/A1%20Security/pre-quote-clarification-guide.html`
+- New: `b2biz.dev/A1Security/pre-quote-clarification-guide.html`
+- Status: ⚠️ Update needed
+
+**All Other Clients:**
+- Provide new b2biz.dev URLs for future communications
+- GitHub Pages URLs will continue to work but not recommended
+
+---
+
+## Troubleshooting
+
+### If URLs Return 404
+1. Check file exists in GitHub repository
+2. Wait 2-3 minutes for Vercel deployment to complete
+3. Check Vercel deployment logs for errors
+4. Verify file path matches exactly (case-sensitive)
+
+### If DNS Not Resolving
+1. Verify Cloudflare DNS settings (A record + CNAME)
+2. Ensure proxy is OFF (gray cloud, not orange)
+3. Wait up to 24-48 hours for DNS propagation
+4. Test with: `dig b2biz.dev` or `nslookup b2biz.dev`
+
+### If Deployment Fails
+1. Check Vercel deployment logs
+2. Verify no build commands are configured
+3. Ensure repository permissions are correct
+4. Try manual redeploy from Vercel dashboard
+
+---
+
+## Best Practices Going Forward
+
+### URL Management
+1. ✅ Always use `b2biz.dev` URLs for client communications
+2. ✅ Keep folder names without spaces (use hyphens or camelCase)
+3. ✅ Use lowercase for consistency where possible
+4. ✅ Test URLs after every deployment
+
+### Development Workflow
+1. Make changes locally
+2. Test locally by opening HTML files
+3. Commit with descriptive messages
+4. Push to GitHub
+5. Wait for Vercel auto-deploy (1-2 minutes)
+6. Test live URLs on b2biz.dev
+7. Share URLs with clients
+
+### File Organization
+1. Each client gets their own folder
+2. Include README.md in each folder
+3. Use consistent naming conventions
+4. Keep projects.md updated with new projects
+
+---
+
+## Cost & Billing
+
+**Vercel:**
+- Plan: Hobby (Free Tier)
+- Limits: 100 GB bandwidth/month, 100 deployments/day
+- Cost: $0/month
+- Upgrade Path: Pro plan ($20/month) if needed
+
+**Cloudflare:**
+- Plan: Free Tier
+- DNS management: Free
+- Cost: $0/month
+
+**Domain (b2biz.dev):**
+- Registrar: [To be added]
+- Annual Cost: ~$15-20/year
+- Renewal: [To be added]
+
+**Total Monthly Cost: $0** (excluding domain registration)
+
+---
+
+## Backup & Recovery
+
+### Backup Strategy
+1. **Primary:** GitHub repository (version controlled)
+2. **Live:** Vercel (can redeploy any commit)
+3. **Legacy:** GitHub Pages (still active)
+4. **Local:** Local repository copy
+
+### Recovery Process
+If site goes down:
+1. Check Vercel status page
+2. Redeploy from Vercel dashboard
+3. Roll back to previous commit if needed
+4. GitHub Pages serves as automatic fallback
+
+---
+
+## Future Enhancements
+
+### Potential Improvements
+- [ ] Add custom 404 page
+- [ ] Implement URL redirects for old GitHub Pages links
+- [ ] Add analytics tracking (Google Analytics or Vercel Analytics)
+- [ ] Create unified landing page at b2biz.dev root
+- [ ] Add password protection for sensitive client projects
+- [ ] Set up custom email alerts for deployment failures
+
+### Domain Expansion
+- [ ] Consider adding additional domains for different services
+- [ ] Implement subdomain routing (e.g., clients.b2biz.dev)
+
+---
+
+## End of Day Summary (October 28, 2025)
+
+**Major Achievements:**
+1. ✅ Successfully migrated all projects from GitHub Pages to Vercel
+2. ✅ Configured custom domain b2biz.dev with Cloudflare DNS
+3. ✅ Renamed A1 Security → A1Security for cleaner URLs
+4. ✅ Tested and verified all deployment URLs
+5. ✅ Set up automatic deployments on git push
+6. ✅ Documented complete migration process
+
+**Time Spent:** ~2 hours (migration + configuration + testing + documentation)
+
+**Blockers:** None
+
+**Status:** All systems operational ✅
+
+---
+
+**End of Infrastructure Documentation**
+
+*Last updated: October 28, 2025 EOD*
