@@ -607,12 +607,12 @@ https://b2biz.dev/MCG/
 
 ---
 
-### Office/DecisionGuide - Advisory Decision Guide
+### Discovery - Advisory Decision Guide
 ```
-https://b2biz.dev/Office/DecisionGuide/
+https://b2biz.dev/discovery/
 ```
-**Direct:** `https://b2biz.dev/Office/DecisionGuide/index.html`
-**Alternate:** `https://b2biz.dev/Office/DecisionGuide/advisory-decision-guide-zoho-optimized-v2.html`
+**Direct:** `https://b2biz.dev/discovery/index.html`
+**Alternate:** `https://b2biz.dev/discovery/advisory-decision-guide-zoho-optimized-v2.html`
 
 ---
 
@@ -642,11 +642,10 @@ projects/
 │   └── README.md
 ├── MCG/
 │   └── index.html (main landing page)
-├── Office/
-│   └── DecisionGuide/
-│       ├── index.html (main landing page)
-│       ├── advisory-decision-guide-zoho-optimized-v2.html
-│       └── README.md
+├── discovery/
+│   ├── index.html (main landing page)
+│   ├── advisory-decision-guide-zoho-optimized-v2.html
+│   └── README.md
 ├── enable-solutions-presentation.html
 └── projects.md
 ```
