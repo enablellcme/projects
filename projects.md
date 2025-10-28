@@ -561,53 +561,58 @@ Proxy: OFF (DNS only)
 
 ## Live URLs - All Projects
 
+**Note:** All client folders now use `index.html` as the default landing page for clean URLs.
+
 ### Merchant Support - Zoho CRM Migration
 ```
-https://b2biz.dev/merchant-support/Pre-Quote.html
+https://b2biz.dev/merchant-support/
 ```
-**Legacy URL:** `https://enablellcme.github.io/projects/merchant-support/Pre-Quote.html`
+**Direct:** `https://b2biz.dev/merchant-support/index.html`
+**Legacy:** `https://enablellcme.github.io/projects/merchant-support/Pre-Quote.html` ⚠️ (deprecated)
 
 ---
 
 ### WorldBestMed - Zoho Implementation Readiness
 ```
-https://b2biz.dev/WorldBestMed/index.html
+https://b2biz.dev/WorldBestMed/
 ```
-**Full Form:**
-```
-https://b2biz.dev/WorldBestMed/enable_pre_consultation_readiness_form_zoho_implementation_medical_supply_multi_channel.html
-```
+**Direct:** `https://b2biz.dev/WorldBestMed/index.html`
+**Alternate Form:** `https://b2biz.dev/WorldBestMed/enable_pre_consultation_readiness_form_zoho_implementation_medical_supply_multi_channel.html`
 
 ---
 
 ### A1Security - Pre-Quote Clarification Guide
 ```
-https://b2biz.dev/A1Security/pre-quote-clarification-guide.html
+https://b2biz.dev/A1Security/
 ```
-**Note:** Renamed from "A1 Security" to "A1Security" (removed space) on October 28, 2025
-**Old URL (deprecated):** `https://enablellcme.github.io/projects/A1%20Security/pre-quote-clarification-guide.html`
+**Direct:** `https://b2biz.dev/A1Security/index.html`
+**Note:** Renamed from "A1 Security" (with space) on October 28, 2025
+**Legacy:** `https://enablellcme.github.io/projects/A1%20Security/pre-quote-clarification-guide.html` ⚠️ (deprecated)
 
 ---
 
 ### ANS - Enable Solutions Presentation
 ```
-https://b2biz.dev/ANS/enable-solutions-presentation.html
+https://b2biz.dev/ANS/
 ```
+**Direct:** `https://b2biz.dev/ANS/index.html`
 
 ---
 
 ### MCG - Chatbot
 ```
-https://b2biz.dev/MCG/index.html
+https://b2biz.dev/MCG/
 ```
+**Direct:** `https://b2biz.dev/MCG/index.html`
 
 ---
 
 ### Office/DecisionGuide - Advisory Decision Guide
 ```
-https://b2biz.dev/Office/DecisionGuide/index.html
-https://b2biz.dev/Office/DecisionGuide/advisory-decision-guide-zoho-optimized-v2.html
+https://b2biz.dev/Office/DecisionGuide/
 ```
+**Direct:** `https://b2biz.dev/Office/DecisionGuide/index.html`
+**Alternate:** `https://b2biz.dev/Office/DecisionGuide/advisory-decision-guide-zoho-optimized-v2.html`
 
 ---
 
@@ -623,23 +628,23 @@ https://b2biz.dev/enable-solutions-presentation.html
 ```
 projects/
 ├── merchant-support/
-│   ├── Pre-Quote.html
+│   ├── index.html (main landing page)
 │   └── README.md
 ├── WorldBestMed/
-│   ├── index.html
+│   ├── index.html (main landing page)
 │   ├── enable_pre_consultation_readiness_form_zoho_implementation_medical_supply_multi_channel.html
 │   ├── README.md
 │   └── DEPLOY.md
 ├── A1Security/
-│   └── pre-quote-clarification-guide.html
+│   └── index.html (main landing page)
 ├── ANS/
-│   ├── enable-solutions-presentation.html
+│   ├── index.html (main landing page)
 │   └── README.md
 ├── MCG/
-│   └── index.html
+│   └── index.html (main landing page)
 ├── Office/
 │   └── DecisionGuide/
-│       ├── index.html
+│       ├── index.html (main landing page)
 │       ├── advisory-decision-guide-zoho-optimized-v2.html
 │       └── README.md
 ├── enable-solutions-presentation.html
