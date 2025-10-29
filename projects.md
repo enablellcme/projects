@@ -838,6 +838,53 @@ If site goes down:
 
 ---
 
+## Special Workflows
+
+### Discovery Files Update Workflow
+
+Discovery files are maintained in a separate source folder for easy editing:
+
+**Source Location:**
+```
+C:\Users\ME Lau\OneDrive\Documents\Discovery\
+├── index.html
+├── advisory-decision-guide-zoho-optimized-v2.html
+├── README.md
+└── discovery.md (documentation)
+```
+
+**Deployment Location:**
+```
+C:\Users\ME Lau\OneDrive\Documents\Projects\discovery\
+├── index.html
+├── advisory-decision-guide-zoho-optimized-v2.html
+└── README.md
+```
+
+**Update Process:**
+1. Edit files in source folder: `C:\Users\ME Lau\OneDrive\Documents\Discovery\`
+2. Copy updated files to projects repo:
+   ```bash
+   cd "C:/Users/ME Lau/OneDrive/Documents/Projects"
+   cp "C:/Users/ME Lau/OneDrive/Documents/Discovery/"*.html "C:/Users/ME Lau/OneDrive/Documents/Discovery/README.md" discovery/
+   ```
+3. Commit and push:
+   ```bash
+   git add discovery/
+   git commit -m "Update discovery forms"
+   git push
+   ```
+4. Vercel auto-deploys (1-2 minutes)
+5. Test at: https://b2biz.dev/discovery/
+
+**Why This Workflow:**
+- Keeps source files organized in dedicated folder
+- Allows batch editing without affecting deployment
+- Maintains unified deployment under b2biz.dev
+- Preserves documentation with source files
+
+---
+
 ## End of Day Summary (October 28, 2025)
 
 **Major Achievements:**
@@ -846,10 +893,12 @@ If site goes down:
 3. ✅ Renamed A1 Security → A1Security for cleaner URLs (removed space)
 4. ✅ Renamed all client main files to index.html for clean folder URLs
 5. ✅ Renamed Office/DecisionGuide → discovery for better organization
-6. ✅ Tested and verified all deployment URLs
-7. ✅ Set up automatic deployments on git push
-8. ✅ Documented complete migration process
-9. ✅ Created simplified URL structure (e.g., b2biz.dev/merchant-support/)
+6. ✅ Evaluated and decided on unified deployment strategy
+7. ✅ Tested and verified all deployment URLs
+8. ✅ Set up automatic deployments on git push
+9. ✅ Documented complete migration process
+10. ✅ Created simplified URL structure (e.g., b2biz.dev/merchant-support/)
+11. ✅ Established workflow for projects with separate source folders
 
 **Clean URLs Implemented:**
 - b2biz.dev/merchant-support/
@@ -859,11 +908,31 @@ If site goes down:
 - b2biz.dev/MCG/
 - b2biz.dev/discovery/
 
-**Time Spent:** ~3 hours (migration + configuration + testing + URL optimization + documentation)
+**Deployment Strategy Decision:**
+- Evaluated separate repository approach for discovery forms
+- Created temporary separate GitHub repo (enablellcme/discovery)
+- Tested separate Vercel deployment
+- Decided unified deployment under b2biz.dev was preferred
+- Moved discovery back to projects repository
+- Deleted separate Vercel project
+- All client projects now under single domain and deployment
+
+**Source File Organization:**
+- Discovery source files: `C:\Users\ME Lau\OneDrive\Documents\Discovery\`
+- Projects repository: Copy discovery files when updates needed
+- Allows organized local editing while maintaining unified deployment
+
+**Time Spent:** ~4 hours (migration + configuration + testing + URL optimization + deployment strategy + documentation)
 
 **Blockers:** None
 
 **Status:** All systems operational ✅
+
+**Key Learnings:**
+- Unified deployment simplifies management
+- Source files can be maintained separately from deployment repo
+- Clean URL structure improves professional appearance
+- Single domain (b2biz.dev) better for client communications
 
 ---
 
