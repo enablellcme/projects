@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MGC Supplies Digital Transformation Decision Guide — Enable Solutions</title>
+  <style>
+    /* Enable Branded Colors */
+    :root {
+      --enable-primary: #005D8F;
+      --enable-accent: #09F781;
+      --enable-dark: #003D4F;
+      --enable-light-bg: #EFF4F4;
+      --enable-text-dark: #003D4F;
+      --enable-text-muted: #005D8F;
+      --enable-border: #005D8F40;
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--enable-light-bg); margin: 0; color: var(--enable-text-dark); }
+
+    header { padding: 24px 20px; background: #fff; border-bottom: 3px solid var(--enable-primary); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,93,143,.1); }
+    header h1 { margin: 0 0 8px 0; font-size: 24px; color: var(--enable-primary); }
+    header p { margin: 0; color: var(--enable-text-muted); font-size: 14px; }
+
+    main { max-width: 1200px; margin: 24px auto; padding: 0 16px 40px; }
+
+    .card { background: #fff; border: 2px solid var(--enable-border); border-radius: 12px; padding: 24px; margin: 16px 0; box-shadow: 0 4px 12px rgba(0,93,143,.08); }
+
+    h2 { font-size: 18px; margin: 0 0 8px; color: var(--enable-primary); border-bottom: 2px solid var(--enable-accent); padding-bottom: 6px; display: inline-block; }
+    .sub { color: var(--enable-text-muted); font-size: 13px; margin: 6px 0 12px; display: block; }
+    .hint { color: var(--enable-text-muted); font-size: 12px; font-style: italic; margin-top: 4px; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+
+    label.block { display: block; margin: 8px 0; font-size: 14px; font-weight: 500; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th { background: var(--enable-primary); color: #fff; padding: 10px 8px; text-align: left; font-weight: 600; font-size: 13px; }
+    td { padding: 8px 6px; border-bottom: 1px solid var(--enable-border); vertical-align: top; }
+    tfoot td { border-top: 3px solid var(--enable-primary); font-weight: 600; padding-top: 12px; }
+
+    input, select, textarea { width: 100%; padding: 8px; border: 1px solid var(--enable-border); border-radius: 8px; font-size: 14px; background: #fff; }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--enable-accent); border-color: var(--enable-primary); }
+    textarea { min-height: 60px; resize: vertical; }
+
+    .compact-table td:first-child { width: 35%; font-weight: 500; }
+    .compact-table textarea { min-height: 40px; }
+
+    button { padding: 10px 16px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; transition: all 0.2s ease; font-size: 14px; }
+    button.primary { background: var(--enable-primary); color: #fff; }
+    button.primary:hover { background: var(--enable-dark); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,93,143,.3); }
+    button.accent { background: var(--enable-accent); color: var(--enable-dark); }
+    button.accent:hover { background: #07d66d; transform: translateY(-1px); }
+    button.ghost { background: #fff; border: 2px solid var(--enable-primary); color: var(--enable-primary); }
+    button.ghost:hover { background: var(--enable-light-bg); }
+
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; margin-top: 16px; }
+    .footnote { color: var(--enable-text-muted); font-size: 13px; margin-top: 12px; padding: 12px; background: var(--enable-light-bg); border-left: 3px solid var(--enable-accent); border-radius: 4px; line-height: 1.5; }
+
+    .framework-box { background: var(--enable-light-bg); border-left: 4px solid var(--enable-accent); padding: 16px; margin: 12px 0; border-radius: 4px; }
+    .framework-box ul { margin: 8px 0; padding-left: 24px; }
+    .framework-box li { margin: 6px 0; }
+
+    .phase-header { background: var(--enable-light-bg); padding: 12px; margin: 16px 0 8px 0; border-left: 4px solid var(--enable-primary); border-radius: 4px; font-weight: 600; color: var(--enable-primary); }
+
+    /* Modal Styles */
+    .modal { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); }
+    .modal-content { background: #fff; margin: 3% auto; padding: 0; width: 90%; max-width: 900px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,93,143,.3); max-height: 85vh; overflow: hidden; display: flex; flex-direction: column; }
+    .modal-header { background: var(--enable-primary); color: #fff; padding: 20px 24px; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h2 { margin: 0; font-size: 22px; }
+    .modal-close { color: #fff; font-size: 32px; font-weight: bold; cursor: pointer; transition: all 0.2s; line-height: 1; padding: 0 8px; }
+    .modal-close:hover { color: var(--enable-accent); transform: scale(1.1); }
+    .modal-body { padding: 24px; overflow-y: auto; flex: 1; }
+    .modal-body h3 { color: var(--enable-primary); margin: 24px 0 12px 0; font-size: 20px; border-bottom: 2px solid var(--enable-accent); padding-bottom: 6px; display: inline-block; }
+    .modal-body h3:first-child { margin-top: 0; }
+    .modal-body h4 { color: var(--enable-primary); font-size: 17px; margin: 20px 0 10px 0; }
+    .modal-body p { line-height: 1.6; margin: 12px 0; }
+    .modal-body strong { color: var(--enable-text-dark); }
+    .modal-body ul { margin: 8px 0; padding-left: 24px; }
+    .modal-body li { margin: 6px 0; line-height: 1.5; }
+    .modal-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .modal-table th { background: var(--enable-primary); color: #fff; padding: 12px 10px; text-align: left; font-weight: 600; font-size: 14px; }
+    .modal-table td { padding: 10px 10px; border-bottom: 1px solid var(--enable-border); vertical-align: top; }
+    .modal-table tr:last-child td { border-bottom: none; }
+    .info-box { background: var(--enable-light-bg); border-left: 4px solid var(--enable-accent); padding: 12px 16px; margin: 16px 0; border-radius: 4px; }
+    .learn-more-btn { background: var(--enable-accent); color: var(--enable-dark); padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; margin-top: 8px; transition: all 0.2s; }
+    .learn-more-btn:hover { background: #07d66d; transform: translateY(-1px); box-shadow: 0 2px 8px rgba(9,247,129,.3); }
+
+    /* Presentation Styles */
+    .presentation-section { border-bottom: 3px solid var(--enable-border); padding-bottom: 30px; margin-bottom: 30px; }
+    .presentation-section:last-child { border-bottom: none; margin-bottom: 0; }
+    .presentation-section h3 { color: var(--enable-primary); font-size: 24px; margin: 0 0 16px 0; border-bottom: 2px solid var(--enable-accent); padding-bottom: 6px; display: inline-block; }
+    .presentation-section h3:first-child { margin-top: 0; }
+    .presentation-section h4 { color: var(--enable-primary); font-size: 18px; margin: 20px 0 10px 0; }
+    .presentation-section p { line-height: 1.6; margin: 12px 0; }
+    .presentation-section ul { margin: 12px 0; padding-left: 24px; line-height: 1.8; }
+    .presentation-section li { margin: 8px 0; }
+    .presentation-section .metric-box { background: var(--enable-light-bg); padding: 16px; margin: 12px 0; border-left: 4px solid var(--enable-accent); border-radius: 4px; }
+    .presentation-section .metric-box strong { color: var(--enable-primary); display: block; margin-bottom: 6px; font-size: 16px; }
+    .phase-timeline { font-size: 14px; color: var(--enable-text-muted); margin-bottom: 16px; font-weight: 600; }
+
+    .presentation-btn { background: linear-gradient(135deg, var(--enable-primary) 0%, var(--enable-dark) 100%); color: #fff; padding: 16px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,93,143,.3); display: flex; align-items: center; gap: 10px; margin: 16px auto; }
+    .presentation-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,93,143,.4); }
+    .presentation-btn::before { content: '📊'; font-size: 24px; }
+
+    .download-presentation-btn { background: var(--enable-accent); color: var(--enable-dark); padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; margin-left: 12px; }
+    .download-presentation-btn:hover { background: #07d66d; transform: translateY(-1px); box-shadow: 0 2px 8px rgba(9,247,129,.3); }
+
+    @media print {
+      .modal { position: static; background: none; }
+      .modal-content { max-width: 100%; box-shadow: none; max-height: none; }
+      .modal-close { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="pageTitle">MGC Supplies Digital Transformation Decision Guide</h1>
+    <p>12-Month Roadmap: Zoho Implementation, Commission Automation, Rep Portal & Analytics</p>
+  </header>
+
+  <main>
+    <!-- Introduction -->
+    <section class="card">
+      <p style="margin:0 0 12px;font-size:14px;line-height:1.6">This decision guide outlines the comprehensive digital transformation plan for MGC Supplies across three phases over 12 months. Review the deliverables below, select your preferred engagement mode (Essential, Collaborative, or Managed) for each item, identify priorities, and provide your preferences on budget, timeline, and phasing.</p>
+      <p class="hint" style="margin:0"><strong>Program Objective:</strong> Establish a compliant, scalable digital infrastructure on Zoho to manage quoting, invoicing, payments, automated commissions for independent sales reps, rep portal, and analytics with clear auditability.</p>
+    </section>
+
+    <!-- Client Information -->
+    <section class="card">
+      <h2>Client Information</h2>
+      <span class="sub">Business and contact details for this project</span>
+
+      <div class="grid-2" style="margin-top:12px">
+        <div><label class="block">Business/Client Name<input type="text" id="businessName" value="MGC Supplies" placeholder="Company name" data-zoho-field="Account_Name"/></label></div>
+        <div><label class="block">Contact Name<input type="text" id="contactName" value="Michael Abi-Kheirs" placeholder="Primary contact" data-zoho-field="Contact_Name"/></label></div>
+        <div><label class="block">Email<input type="email" id="email" value="michael@mgc-supplies.com" placeholder="contact@company.com" data-zoho-field="Email"/></label></div>
+        <div><label class="block">Phone<input type="tel" id="phone" placeholder="(555) 123-4567" data-zoho-field="Phone"/></label></div>
+      </div>
+    </section>
+
+    <!-- Our Recommendations & Findings Presentation -->
+    <section class="card" style="text-align: center;">
+      <h2>Our Recommendations & Findings</h2>
+      <span class="sub">Review Enable's strategic recommendations and analysis for MGC Supplies</span>
+      <p style="margin:16px 0; font-size:14px; color: var(--enable-text-muted);">
+        We've analyzed your business needs and prepared a comprehensive presentation outlining our findings, recommendations, success metrics, and roadmap. Click below to review the presentation.
+      </p>
+      <button type="button" class="presentation-btn" onclick="openPresentationModal()">
+        View Strategic Recommendations
+      </button>
+    </section>
+
+    <!-- Enablement Framework -->
+    <section class="card">
+      <h2>Enablement Framework</h2>
+      <span class="sub">Choose how Enable partners with you on each deliverable</span>
+
+      <div class="framework-box">
+        <ul>
+          <li><strong>Essential</strong> → Light touch: Enable sets up the foundation; client manages day-to-day operations</li>
+          <li><strong>Collaborative</strong> → Shared effort: Enable handles technical strategy; client operates systems</li>
+          <li><strong>Managed</strong> → Full service: Enable owns delivery, optimization, and ongoing management</li>
+          <li><strong>Exclude</strong> → Not included in this phase</li>
+        </ul>
+        <button type="button" class="learn-more-btn" onclick="openServiceLevelsModal()">📖 Learn More About Service Levels</button>
+      </div>
+      <p class="hint">Unit-based billing applies: 1 unit ≈ 1.5–3 hours of work. Select the engagement mode for each deliverable below.</p>
+    </section>
+
+    <!-- Feature Selection -->
+    <section class="card">
+      <h2>Deliverables & Engagement Mode</h2>
+      <span class="sub">Three-phase roadmap: Foundation & Quick Wins (Q4 2025) → Automation & Rep Enablement (Q1-Q2 2026) → Optimization & Compliance (Q3 2026)</span>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40px">✓</th>
+            <th>Feature / Deliverable</th>
+            <th style="width:140px">Mode</th>
+            <th style="width:80px;text-align:right">Units</th>
+            <th style="width:25%">Notes</th>
+          </tr>
+        </thead>
+        <tbody id="features-body"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"><strong>Totals by Mode & Overall</strong></td>
+            <td colspan="1" id="modeTotals" style="font-size:12px"></td>
+            <td id="unitTotal" style="text-align:right;font-size:16px"></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <!-- Priorities -->
+    <section class="card">
+      <h2>Feature Priorities</h2>
+      <span class="sub">Rank each feature area by priority (1 = Highest, 5 = Lowest)</span>
+
+      <table class="compact-table">
+        <thead><tr><th>Feature Area</th><th style="width:120px;text-align:center">Priority (1-5)</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Commissions Automation</td><td style="text-align:center"><input type="number" min="1" max="5" style="width:60px;text-align:center" placeholder="1-5"/></td><td><textarea placeholder="Priority notes"></textarea></td></tr>
+          <tr><td>Rep Portal</td><td style="text-align:center"><input type="number" min="1" max="5" style="width:60px;text-align:center" placeholder="1-5"/></td><td><textarea placeholder="Priority notes"></textarea></td></tr>
+          <tr><td>PO Automation</td><td style="text-align:center"><input type="number" min="1" max="5" style="width:60px;text-align:center" placeholder="1-5"/></td><td><textarea placeholder="Priority notes"></textarea></td></tr>
+          <tr><td>Analytics/Dashboards</td><td style="text-align:center"><input type="number" min="1" max="5" style="width:60px;text-align:center" placeholder="1-5"/></td><td><textarea placeholder="Priority notes"></textarea></td></tr>
+          <tr><td>Payment Processing</td><td style="text-align:center"><input type="number" min="1" max="5" style="width:60px;text-align:center" placeholder="1-5"/></td><td><textarea placeholder="Priority notes"></textarea></td></tr>
+          <tr><td>Document Signing</td><td style="text-align:center"><input type="number" min="1" max="5" style="width:60px;text-align:center" placeholder="1-5"/></td><td><textarea placeholder="Priority notes"></textarea></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Top Goals -->
+    <section class="card">
+      <h2>Top Goals for Next 90 Days</h2>
+      <span class="sub">Identify your top 3 business goals for Q4 2025 / Q1 2026</span>
+
+      <table class="compact-table">
+        <tbody>
+          <tr><td>Goal #1</td><td><textarea placeholder="Your top priority business goal"></textarea></td></tr>
+          <tr><td>Goal #2</td><td><textarea placeholder="Second priority business goal"></textarea></td></tr>
+          <tr><td>Goal #3</td><td><textarea placeholder="Third priority business goal"></textarea></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Budget & Payment -->
+    <section class="card">
+      <h2>Budget & Payment Preferences</h2>
+      <span class="sub">Clarify funding approach and payment terms</span>
+
+      <label class="block">Budget Notes / Constraints<textarea id="budgetNotes" placeholder="Any budget caps, approval thresholds, or constraints" style="margin-top:4px"></textarea></label>
+
+      <div class="grid-3" style="margin-top:12px">
+        <div>
+          <label class="block">Payment Option</label>
+          <select id="paymentPref">
+            <option value="full">Full Project Budget (one-time)</option>
+            <option value="monthly">Monthly Payment Plan</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="semi_annual">Semi-Annual</option>
+            <option value="annual">Annual</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">Payment Method</label>
+          <select id="paymentMethod">
+            <option value="ach">ACH</option>
+            <option value="check">Check</option>
+            <option value="cc">Credit Card (3% fee)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block">Commitment Comfort Level</label>
+          <select id="commitmentLevel">
+            <option value="quarterly_high">Quarterly - High Comfort</option>
+            <option value="quarterly_medium">Quarterly - Medium Comfort</option>
+            <option value="quarterly_low">Quarterly - Low Comfort</option>
+            <option value="semiannual_high">Semi-Annual - High Comfort</option>
+            <option value="semiannual_medium">Semi-Annual - Medium Comfort</option>
+            <option value="semiannual_low">Semi-Annual - Low Comfort</option>
+            <option value="annual_high">Annual (12 months) - High Comfort</option>
+            <option value="annual_medium">Annual (12 months) - Medium Comfort</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="hint" style="margin-top:12px"><strong>Full Project Terms:</strong> 50% deposit, 25% midway, 25% at completion</p>
+    </section>
+
+    <!-- Timeline & Phasing -->
+    <section class="card">
+      <h2>Timeline & Phasing</h2>
+      <span class="sub">Define project phases, milestones, and go-live timeline</span>
+
+      <div class="framework-box">
+        <strong>Recommended Timeline:</strong>
+        <ul>
+          <li><strong>Phase 1 (Q4 2025 — Months 0-3):</strong> Foundation & Quick Wins — Quote/Invoice automation, Commission v1, Payment setup</li>
+          <li><strong>Phase 2 (Q1-Q2 2026 — Months 4-9):</strong> Automation & Rep Enablement — Commission v2, Rep Portal, PO automation, Analytics</li>
+          <li><strong>Phase 3 (Q3 2026 — Months 10-12):</strong> Optimization & Compliance — Full Portal launch, SOPs, Training, Compliance pack</li>
+        </ul>
+      </div>
+
+      <label class="block">Timeline Preferences & Constraints<textarea id="timelineNotes" placeholder="Specify preferred start date, key deadlines, go-live phases, or any timeline constraints" style="margin-top:8px"></textarea></label>
+    </section>
+
+    <!-- Constraints & Dependencies -->
+    <section class="card">
+      <h2>Constraints & Dependencies</h2>
+      <span class="sub">Internal bandwidth, key deadlines, and compliance requirements</span>
+
+      <table class="compact-table">
+        <tbody>
+          <tr><td>Weekly Bandwidth Available (hours)</td><td><input type="number" placeholder="Hours per week from MGC team"/></td></tr>
+          <tr><td>Key Deadlines</td><td><textarea placeholder="Upcoming launches, events, fiscal year-end, audit dates, rep onboarding deadlines"></textarea></td></tr>
+          <tr><td>Compliance Notes</td><td><textarea placeholder="HIPAA applicability, PHI/PII handling requirements, existing compliance obligations, audit/certification requirements"></textarea></td></tr>
+          <tr><td>Key Point of Contact</td><td><input type="text" placeholder="Primary decision-maker for this project"/></td></tr>
+          <tr><td>Secondary Contact</td><td><input type="text" placeholder="Operational contact for technical details"/></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Additional Notes -->
+    <section class="card">
+      <h2>Additional Notes</h2>
+      <span class="sub">Any other project considerations, constraints, or requirements</span>
+      <textarea id="generalNotes" placeholder="List any additional project considerations, concerns, opportunities, or questions" style="margin-top:8px"></textarea>
+
+      <div class="actions">
+        <button type="button" class="ghost" id="resetBtn">Reset Form</button>
+        <button type="button" class="ghost" id="importJsonBtn">Import JSON</button>
+        <button type="button" class="ghost" onclick="window.print()">Print / Save as PDF</button>
+        <button type="button" class="ghost" id="downloadTxtBtn">Download Text</button>
+        <button type="button" class="primary" id="copyJsonBtn">Copy JSON</button>
+        <button type="button" class="accent" id="downloadJsonBtn">Download JSON</button>
+        <button type="button" class="ghost" id="exportHtmlBtn">Export Pre-filled HTML</button>
+      </div>
+      <input type="file" id="jsonFileInput" accept="application/json,.json" style="display:none;" />
+
+      <div class="footnote">
+        <strong>Client Workflow:</strong> Fill out form → Download JSON → Email to Enable<br>
+        <strong>Enable Workflow:</strong> Import JSON → Review/adjust → Export Pre-filled HTML → Send to client for approval<br>
+        Use <em>Print / Save as PDF</em> for your records.
+      </div>
+    </section>
+
+    <!-- Service Levels Modal -->
+    <div id="serviceLevelsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Enable Service Levels Overview</h2>
+          <span class="modal-close" onclick="closeServiceLevelsModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p>Enable Workspace offers three distinct levels of service — <strong>Essentials</strong>, <strong>Collaborative</strong>, and <strong>Managed</strong> — designed to fit the level of partnership and support each client needs. This structure provides clarity, scalability, and confidence when choosing how Enable integrates with your business.</p>
+
+          <h3>1. Essentials — You Build, We Guide</h3>
+          <p><strong>Definition:</strong> Essentials is the foundation tier for clients who want to stay hands-on while leveraging Enable's frameworks and proven setup process. We provide the tools and structure; you drive the day-to-day operations.</p>
+
+          <p><strong>Included Support:</strong></p>
+          <ul>
+            <li>One-time system setup and implementation</li>
+            <li>Foundational automations and templates</li>
+            <li>Access to documentation, playbooks, and training videos</li>
+            <li>Email or ticket-based Q&A support during setup</li>
+          </ul>
+
+          <p><strong>Example Scenarios:</strong></p>
+          <ul>
+            <li>Enable configures your CRM, but your team manages leads, pipelines, and follow-ups</li>
+            <li>Enable provides automation templates for onboarding workflows; your team runs them internally</li>
+            <li>Enable builds analytics dashboards; your team updates and interprets data</li>
+          </ul>
+
+          <p><strong>Ideal Client:</strong> Startups or lean teams who want expert setup and control execution in-house.</p>
+
+          <h3>2. Collaborative — We Build Together</h3>
+          <p><strong>Definition:</strong> A balanced, hybrid approach where Enable and your team share responsibilities. We handle the technical strategy and optimization, while you manage daily operations. It's a partnership designed for growth and learning.</p>
+
+          <p><strong>Included Support:</strong></p>
+          <ul>
+            <li>Shared management of systems and workflows</li>
+            <li>Scheduled strategy and review meetings</li>
+            <li>Co-development of automations, integrations, or campaigns</li>
+            <li>Priority access to Enable's support and expertise</li>
+          </ul>
+
+          <p><strong>Example Scenarios:</strong></p>
+          <ul>
+            <li>Enable builds and optimizes automations; your team manages customer interactions and content</li>
+            <li>Biweekly check-ins where Enable reviews metrics and recommends updates</li>
+            <li>Split CRM ownership — Enable refines structure and data integrity; your team runs operations</li>
+          </ul>
+
+          <p><strong>Ideal Client:</strong> Growth-stage businesses seeking to scale operations with guidance but still maintain hands-on control.</p>
+
+          <h3>3. Managed — We Handle It All</h3>
+          <p><strong>Definition:</strong> Enable takes full responsibility for implementation, management, and optimization of your systems. Your focus stays on business strategy while we run the technology and operations behind it.</p>
+
+          <p><strong>Included Support:</strong></p>
+          <ul>
+            <li>End-to-end management of all systems, campaigns, and workflows</li>
+            <li>Dedicated account manager and technical lead</li>
+            <li>Continuous optimization, monitoring, and performance reporting</li>
+            <li>Strategic planning sessions with actionable insights</li>
+          </ul>
+
+          <p><strong>Example Scenarios:</strong></p>
+          <ul>
+            <li>Enable manages all CRM automations, reporting, and marketing campaigns from setup to delivery</li>
+            <li>Monthly data reviews and performance reports with proactive system improvements</li>
+            <li>Enable oversees integrations, troubleshooting, and day-to-day execution</li>
+          </ul>
+
+          <p><strong>Ideal Client:</strong> Scaling or resource-limited teams that want a turnkey system without internal management overhead.</p>
+
+          <h3>Comparison Snapshot</h3>
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Description</th>
+                <th>Enable's Role</th>
+                <th>Client's Role</th>
+                <th>Ideal Fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Essentials</strong></td>
+                <td>DIY with Enable's foundation</td>
+                <td>Setup & training</td>
+                <td>Manage daily operations</td>
+                <td>Startups & small teams</td>
+              </tr>
+              <tr>
+                <td><strong>Collaborative</strong></td>
+                <td>Shared management and strategy</td>
+                <td>Build & optimize</td>
+                <td>Operate systems</td>
+                <td>Growing SMBs</td>
+              </tr>
+              <tr>
+                <td><strong>Managed</strong></td>
+                <td>Full-service execution</td>
+                <td>Own & operate</td>
+                <td>Approve & oversee</td>
+                <td>Scaling or enterprise teams</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="info-box">
+            <p style="margin:0"><strong>Forward View:</strong> As Enable continues evolving, each tier will integrate intelligent automation, AI-powered reporting, and predictive insights — ensuring that no matter where a client starts, they can scale effortlessly into the next stage of Enable's ecosystem.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Presentation Modal -->
+    <div id="presentationModal" class="modal">
+      <div class="modal-content" style="max-width: 1100px;">
+        <div class="modal-header">
+          <h2>MGC Supplies Digital Transformation — Strategic Recommendations</h2>
+          <div style="display: flex; align-items: center;">
+            <button class="download-presentation-btn" onclick="downloadPresentation()">📥 Download</button>
+            <span class="modal-close" onclick="closePresentationModal()">&times;</span>
+          </div>
+        </div>
+        <div class="modal-body">
+
+              <!-- Section 1: Executive Summary -->
+              <div class="presentation-section">
+                <h3>Executive Summary</h3>
+                <p style="font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                  MGC Supplies is poised for digital transformation to scale operations, automate commission tracking, and empower independent sales reps with modern tools.
+                </p>
+
+                <div class="metric-box">
+                  <strong>Program Objective</strong>
+                  <p style="margin: 0;">Establish a compliant, scalable digital infrastructure on Zoho to manage quoting, invoicing, payments, and automated commissions for independent sales reps; phase in automation and analytics with clear auditability.</p>
+                </div>
+
+                <h4>Guiding Principles</h4>
+                <ul>
+                  <li><strong>Compliance-first:</strong> HIPAA-aligned handling of PII/PHI, least-privilege access, auditable logs</li>
+                  <li><strong>MVP-first execution:</strong> Reduce manual work quickly, then iterate</li>
+                  <li><strong>Data integrity:</strong> Single-source-of-truth across CRM and Books</li>
+                  <li><strong>Secure enablement:</strong> 1099 reps access without exposing sensitive financials</li>
+                </ul>
+
+                <div class="metric-box">
+                  <strong>Timeline</strong>
+                  <p style="margin: 0;">12 months across 3 strategic phases: Foundation → Automation → Optimization</p>
+                </div>
+              </div>
+
+              <!-- Section 2: Phase 1 - Foundation & Quick Wins -->
+              <div class="presentation-section">
+                <h3>Phase 1: Foundation & Quick Wins</h3>
+                <p class="phase-timeline">Timeline: Q4 2025 (Months 0–3)</p>
+
+                <h4>Key Deliverables</h4>
+                <ul>
+                  <li>Quote → Invoice automation in Zoho Books (auto-convert on acceptance)</li>
+                  <li>Commission Framework v1: Single-rep formulas configured; first monthly report</li>
+                  <li>Bookkeeping transition start: Wave parallel run; chart-of-accounts mapping</li>
+                  <li>Secure Rep Deal Intake Form (HTML/Creator) as interim to portal</li>
+                  <li>Dual payment setup: Zoho Pay backup + RunPayment (NMI) primary</li>
+                </ul>
+
+                <h4>Expected Outcomes</h4>
+                <div class="metric-box">
+                  <strong>≥50% reduction</strong>
+                  <p style="margin: 0;">Duplicate/manual entry for quotes and invoices eliminated</p>
+                </div>
+                <div class="metric-box">
+                  <strong>30% faster</strong>
+                  <p style="margin: 0;">Time-to-quote reduced by 30%</p>
+                </div>
+                <div class="metric-box">
+                  <strong>&lt;5 minutes/month</strong>
+                  <p style="margin: 0;">Commission statements produced in under 5 minutes per month</p>
+                </div>
+
+                <h4>Success Metrics</h4>
+                <ul>
+                  <li>100% of accepted quotes auto-generate invoices</li>
+                  <li>Commission report accuracy ≥ 99% (spot-check method)</li>
+                  <li>Consistent payment receipt records tied to invoices</li>
+                </ul>
+              </div>
+
+              <!-- Section 3: Phase 2 - Automation & Rep Enablement -->
+              <div class="presentation-section">
+                <h3>Phase 2: Automation & Rep Enablement</h3>
+                <p class="phase-timeline">Timeline: Q1–Q2 2026 (Months 4–9)</p>
+
+                <h4>Key Deliverables</h4>
+                <ul>
+                  <li>Commission Engine v2: Tiered rates, multi-rep splits, vendor/partner splits with exception handling</li>
+                  <li>Invoice → Purchase Order automation with supplier selection logic</li>
+                  <li>Rep Portal Prototype (Creator/CRM Portal): Deals, commissions-to-date, payout status</li>
+                  <li>Shipment tracking workflow: Add tracking in Books → client auto-email</li>
+                  <li>Zoho Analytics dashboards: Sales by Rep, Margin by Product/Service, AR aging, Time-to-Cash</li>
+                </ul>
+
+                <h4>Expected Outcomes</h4>
+                <div class="metric-box">
+                  <strong>≥90% automation</strong>
+                  <p style="margin: 0;">Commission calculations fully automated</p>
+                </div>
+                <div class="metric-box">
+                  <strong>≥75% automation</strong>
+                  <p style="margin: 0;">PO creation from paid invoices automated</p>
+                </div>
+                <div class="metric-box">
+                  <strong>30% improvement</strong>
+                  <p style="margin: 0;">Quote-to-cash cycle vs. baseline</p>
+                </div>
+
+                <h4>Success Metrics</h4>
+                <ul>
+                  <li>Portal adoption by 100% active reps</li>
+                  <li>Discrepancy rate between CRM and Books ≤ 5%</li>
+                  <li>Dashboard coverage of KPIs (rep, margin, cash) = 100%</li>
+                </ul>
+              </div>
+
+              <!-- Section 4: Phase 3 - Optimization & Compliance -->
+              <div class="presentation-section">
+                <h3>Phase 3: Optimization & Compliance</h3>
+                <p class="phase-timeline">Timeline: Q3 2026 (Months 10–12)</p>
+
+                <h4>Key Deliverables</h4>
+                <ul>
+                  <li>Full Rep Portal Launch with role-based access, earnings visibility, and payout audit trail</li>
+                  <li>Compliance & documentation pack: NDAs/MOUs templates, approval logs, immutable change history</li>
+                  <li>SOP Library covering quoting, PO routing, reconciliation, portal usage, and exceptions</li>
+                  <li>Training & knowledge transfer: Quick videos, playbooks, and rep onboarding checklist</li>
+                  <li>Margin & profit tracking surfaced to finance only (hide GP from reps)</li>
+                </ul>
+
+                <h4>Expected Outcomes</h4>
+                <div class="metric-box">
+                  <strong>100% transparency</strong>
+                  <p style="margin: 0;">Rep transparency on commissions and payout status</p>
+                </div>
+                <div class="metric-box">
+                  <strong>≥70% reduction</strong>
+                  <p style="margin: 0;">Manual bookkeeping effort reduced by 70% or more</p>
+                </div>
+                <div class="metric-box">
+                  <strong>Audit-ready</strong>
+                  <p style="margin: 0;">Complete logs for quotes → invoices → payments → commissions</p>
+                </div>
+
+                <h4>Success Metrics</h4>
+                <ul>
+                  <li>Month-end close accelerated with reconciled Books ↔ CRM</li>
+                  <li>UAT pass rate ≥95% before each release</li>
+                  <li>Quality and compliance controls embedded in everyday workflows</li>
+                </ul>
+              </div>
+
+              <!-- Section 5: Key Recommendations -->
+              <div class="presentation-section">
+                <h3>Key Strategic Recommendations</h3>
+
+                <h4>1. Start with Phase 1 — Foundation is Critical</h4>
+                <p><strong>Why:</strong> Quick wins build momentum; foundation must be solid before automation layers; payment processor onboarding takes time.</p>
+                <p style="color: #d32f2f;"><strong>Risk if delayed:</strong> Manual processes compound errors; commission disputes increase; rep frustration grows.</p>
+
+                <h4>2. Commit to Full 12-Month Roadmap</h4>
+                <p><strong>Why:</strong> Phase 1 alone won't deliver full automation; Rep portal (Phase 2-3) is critical for 1099 model; Compliance & governance protect against future risk.</p>
+                <p><strong>Alternative:</strong> Phased approval with gate reviews after Phase 1 and Phase 2.</p>
+
+                <h4>3. Prioritize Commission Engine Early</h4>
+                <p><strong>Why:</strong> Commission disputes erode rep trust; manual calculations don't scale; audit trail is critical for 1099 compliance.</p>
+
+                <h4>4. Dual Payment Gateway Strategy</h4>
+                <p><strong>Why:</strong> Payment processor holds/underwriting delays are common; failover prevents revenue disruption.</p>
+
+                <h4>5. Control Rep Access from Day 1</h4>
+                <p><strong>Why:</strong> 1099 reps should never see gross profit margins; PII/PHI handling must be HIPAA-aligned; audit logs required for compliance.</p>
+              </div>
+
+              <!-- Section 6: Risks & Mitigations -->
+              <div class="presentation-section">
+                <h3>Risks & Mitigations</h3>
+
+                <div class="metric-box">
+                  <strong>Risk: Payment processor holds/underwriting delays</strong>
+                  <p style="margin: 6px 0 0 0;"><strong>Mitigation:</strong> Dual-gateway strategy (Zoho Pay backup, RunPayment primary); failover SOP</p>
+                </div>
+
+                <div class="metric-box">
+                  <strong>Risk: Data inconsistency between CRM and Books</strong>
+                  <p style="margin: 6px 0 0 0;"><strong>Mitigation:</strong> Authoritative mapping, nightly sync checks, exception reports</p>
+                </div>
+
+                <div class="metric-box">
+                  <strong>Risk: Rep access creep / data leakage</strong>
+                  <p style="margin: 6px 0 0 0;"><strong>Mitigation:</strong> Strict roles/profiles, portal isolation, periodic access reviews</p>
+                </div>
+
+                <div class="metric-box">
+                  <strong>Risk: Internal bandwidth constraints</strong>
+                  <p style="margin: 6px 0 0 0;"><strong>Mitigation:</strong> Hybrid engagement model; realistic sprint planning</p>
+                </div>
+
+                <div class="metric-box">
+                  <strong>Risk: Scope creep during implementation</strong>
+                  <p style="margin: 6px 0 0 0;"><strong>Mitigation:</strong> Change control process; gate approvals at each phase</p>
+                </div>
+              </div>
+
+              <!-- Section 7: Success Metrics Summary -->
+              <div class="presentation-section">
+                <h3>Success Metrics Summary</h3>
+
+                <h4>Phase 1 Metrics (Q4 2025)</h4>
+                <ul>
+                  <li>Time-to-quote reduced by 30%</li>
+                  <li>100% of accepted quotes auto-generate invoices</li>
+                  <li>Commission report accuracy ≥ 99%</li>
+                  <li>≥50% reduction in manual entry</li>
+                </ul>
+
+                <h4>Phase 2 Metrics (Q1-Q2 2026)</h4>
+                <ul>
+                  <li>Portal adoption by 100% of active reps</li>
+                  <li>≥90% automation of commission calculations</li>
+                  <li>≥75% automation of PO creation</li>
+                  <li>30% improvement in quote-to-cash cycle</li>
+                </ul>
+
+                <h4>Phase 3 Metrics (Q3 2026)</h4>
+                <ul>
+                  <li>≥70% reduction in manual bookkeeping effort</li>
+                  <li>Audit-ready logs for all transactions</li>
+                  <li>UAT pass rate ≥95% before each release</li>
+                  <li>100% rep transparency on commissions</li>
+                </ul>
+
+                <div class="info-box" style="margin-top: 20px;">
+                  <p style="margin: 0; font-size: 14px;"><strong>ROI Timeline:</strong> Immediate benefits in Phase 1 (50% reduction in manual work) scaling to transformative results by Phase 3 (70% reduction in bookkeeping effort + full automation)</p>
+                </div>
+              </div>
+
+              <!-- Section 8: Next Steps -->
+              <div class="presentation-section">
+                <h3>Next Steps to Engagement</h3>
+
+                <div class="metric-box">
+                  <strong>Step 1: Review & Complete Decision Guide ✅</strong>
+                  <p style="margin: 6px 0 0 0;">Check all relevant boxes, rank priorities, note constraints and goals, select engagement model</p>
+                </div>
+
+                <div class="metric-box">
+                  <strong>Step 2: Schedule Decision Meeting</strong>
+                  <p style="margin: 6px 0 0 0;"><strong>Purpose:</strong> Review your responses, answer questions, refine scope<br>
+                  <strong>Duration:</strong> 60–90 minutes<br>
+                  <strong>Outcome:</strong> Finalized scope and timeline</p>
+                </div>
+
+                <div class="metric-box">
+                  <strong>Step 3: Commercial Proposal & Terms</strong>
+                  <p style="margin: 6px 0 0 0;">Enable Solutions provides detailed proposal based on selected engagement model, phase approvals, feature priorities, and commitment timeframe</p>
+                </div>
+
+                <div class="metric-box">
+                  <strong>Step 4: Kickoff & Phase 1 Launch</strong>
+                  <p style="margin: 6px 0 0 0;">Sign agreement, schedule kickoff, begin Week 1 discovery and requirements gathering</p>
+                </div>
+
+                <h4 style="margin-top: 30px;">Immediate Actions Required</h4>
+                <ul>
+                  <li>Provide commission rule details for v1 configuration</li>
+                  <li>Confirm Chart of Accounts with accountant</li>
+                  <li>Kick off RunPayment (NMI) onboarding</li>
+                  <li>Populate items/services catalog and pricing rules</li>
+                </ul>
+              </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ============================================
+    // MGC SUPPLIES DIGITAL TRANSFORMATION
+    // 12-Month Roadmap Decision Guide
+    // ============================================
+
+    // Catalog with per-mode unit estimates and default recommended modes
+    // Organized by Phase: Foundation → Automation → Optimization
+    const CATALOG = [
+      // PHASE 1: Foundation & Quick Wins (Q4 2025 — Months 0-3)
+      {label:'🔷 PHASE 1: Foundation & Quick Wins (Q4 2025)', units:{essential:0,collaborative:0,managed:0}, recommended:'exclude', isHeader: true},
+      {label:'Discovery & Requirements Gathering', units:{essential:3,collaborative:4,managed:6}, recommended:'collaborative'},
+      {label:'Quote → Invoice Automation (Zoho Books)', units:{essential:4,collaborative:6,managed:8}, recommended:'managed'},
+      {label:'Commission Framework v1 (Single-Rep Formulas)', units:{essential:5,collaborative:7,managed:10}, recommended:'managed'},
+      {label:'Dual Payment Setup (RunPayment/NMI + Zoho Pay)', units:{essential:3,collaborative:5,managed:7}, recommended:'managed'},
+      {label:'Secure Rep Deal Intake Form (HTML/Creator)', units:{essential:2,collaborative:3,managed:5}, recommended:'collaborative'},
+      {label:'Bookkeeping Transition: Wave → Zoho Books', units:{essential:4,collaborative:6,managed:9}, recommended:'collaborative'},
+      {label:'Chart of Accounts Mapping & Configuration', units:{essential:3,collaborative:4,managed:6}, recommended:'collaborative'},
+
+      // PHASE 2: Automation & Rep Enablement (Q1-Q2 2026 — Months 4-9)
+      {label:'🔶 PHASE 2: Automation & Rep Enablement (Q1-Q2 2026)', units:{essential:0,collaborative:0,managed:0}, recommended:'exclude', isHeader: true},
+      {label:'Commission Engine v2 (Tiered Rates, Multi-Rep Splits)', units:{essential:6,collaborative:9,managed:12}, recommended:'managed'},
+      {label:'Invoice → Purchase Order Automation', units:{essential:4,collaborative:6,managed:9}, recommended:'managed'},
+      {label:'Rep Portal Prototype (Creator/CRM Portal)', units:{essential:6,collaborative:8,managed:12}, recommended:'managed'},
+      {label:'Shipment Tracking Workflow & Auto-Emails', units:{essential:2,collaborative:3,managed:5}, recommended:'collaborative'},
+      {label:'Zoho Analytics Dashboards (Sales, Margin, AR, Time-to-Cash)', units:{essential:4,collaborative:6,managed:9}, recommended:'collaborative'},
+      {label:'RunPayment (NMI) Production Integration', units:{essential:3,collaborative:4,managed:6}, recommended:'managed'},
+      {label:'Security Review & Role Hardening', units:{essential:2,collaborative:3,managed:5}, recommended:'managed'},
+
+      // PHASE 3: Optimization & Compliance (Q3 2026 — Months 10-12)
+      {label:'🔸 PHASE 3: Optimization & Compliance (Q3 2026)', units:{essential:0,collaborative:0,managed:0}, recommended:'exclude', isHeader: true},
+      {label:'Full Rep Portal Launch (Role-Based Access, Audit Trail)', units:{essential:5,collaborative:7,managed:10}, recommended:'managed'},
+      {label:'Compliance & Documentation Pack (NDAs, MOUs, Approval Logs)', units:{essential:3,collaborative:4,managed:6}, recommended:'collaborative'},
+      {label:'SOP Library (Quoting, PO Routing, Reconciliation, Portal)', units:{essential:3,collaborative:5,managed:7}, recommended:'collaborative'},
+      {label:'Training & Knowledge Transfer (Videos, Playbooks, Onboarding)', units:{essential:3,collaborative:4,managed:6}, recommended:'collaborative'},
+      {label:'Margin & Profit Tracking (Finance-Only Visibility)', units:{essential:2,collaborative:3,managed:5}, recommended:'managed'},
+      {label:'Hypercare & Post-Launch Support (30 days)', units:{essential:3,collaborative:5,managed:8}, recommended:'collaborative'},
+      {label:'Month-End Close Optimization & Reconciliation', units:{essential:2,collaborative:3,managed:5}, recommended:'collaborative'}
+    ];
+
+    const modes = ['essential','collaborative','managed','exclude'];
+
+    const tbody = document.getElementById('features-body');
+
+    function titleCase(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    function createRow(item) {
+      const tr = document.createElement('tr');
+
+      // If it's a header row
+      if (item.isHeader) {
+        tr.innerHTML = `<td colspan="5" class="phase-header">${item.label}</td>`;
+        return tr;
+      }
+
+      const chk = document.createElement('input'); chk.type = 'checkbox'; chk.checked = true;
+      const td0 = document.createElement('td'); td0.appendChild(chk);
+      const td1 = document.createElement('td'); td1.textContent = item.label;
+      const td2 = document.createElement('td');
+      const sel = document.createElement('select');
+      modes.forEach(m => {
+        const o = document.createElement('option');
+        o.value = m;
+        o.textContent = titleCase(m);
+        sel.appendChild(o);
+      });
+      sel.value = item.recommended || 'essential';
+      td2.appendChild(sel);
+      const td3 = document.createElement('td'); td3.style.textAlign = 'right';
+      const span = document.createElement('span'); td3.appendChild(span);
+      const td4 = document.createElement('td');
+      const note = document.createElement('textarea'); td4.appendChild(note);
+      tr.append(td0, td1, td2, td3, td4);
+
+      function recalc() {
+        const val = sel.value;
+        const on = chk.checked;
+        let u = 0;
+        if (on && val !== 'exclude') { u = item.units[val]; }
+        span.textContent = u;
+        updateTotals();
+      }
+      sel.addEventListener('change', recalc);
+      chk.addEventListener('change', recalc);
+      recalc();
+      return tr;
+    }
+
+    function build() {
+      tbody.innerHTML = '';
+      CATALOG.forEach(i => tbody.appendChild(createRow(i)));
+      document.getElementById('paymentMethod').value = 'ach';
+      updateTotals();
+    }
+
+    function updateTotals() {
+      let tEss = 0, tCol = 0, tMan = 0, tAll = 0;
+      document.querySelectorAll('#features-body tr').forEach(tr => {
+        // Skip header rows
+        if (tr.querySelector('.phase-header')) return;
+
+        const sel = tr.querySelector('select');
+        const chk = tr.querySelector('input[type=checkbox]');
+        if (!sel || !chk) return;
+
+        const mode = sel.value;
+        const checked = chk.checked;
+        const units = Number(tr.querySelector('td:nth-child(4) span').textContent) || 0;
+        if (!checked || mode === 'exclude') return;
+        if (mode === 'essential') tEss += units;
+        if (mode === 'collaborative') tCol += units;
+        if (mode === 'managed') tMan += units;
+        tAll += units;
+      });
+      document.getElementById('modeTotals').innerText = `Ess: ${tEss} • Collab: ${tCol} • Mgd: ${tMan}`;
+      document.getElementById('unitTotal').innerText = tAll;
+    }
+
+    function collectJSON() {
+      const features = [];
+      document.querySelectorAll('#features-body tr').forEach(tr => {
+        // Skip header rows
+        if (tr.querySelector('.phase-header')) {
+          features.push({phase_header: tr.querySelector('.phase-header').textContent});
+          return;
+        }
+
+        const chk = tr.querySelector('input[type=checkbox]');
+        const mode = tr.querySelector('select').value;
+        const label = tr.children[1].textContent;
+        const units = Number(tr.children[3].querySelector('span').textContent) || 0;
+        const notes = tr.children[4].querySelector('textarea').value.trim();
+        if (!chk.checked) return;
+        features.push({label, mode, units, notes});
+      });
+
+      // Collect priorities
+      const priorities = [];
+      const priorityRows = document.querySelectorAll('.card:nth-of-type(5) tbody tr');
+      priorityRows.forEach(tr => {
+        const feature = tr.children[0].textContent;
+        const priority = tr.querySelector('input[type=number]').value;
+        const notes = tr.querySelector('textarea').value.trim();
+        if (priority) priorities.push({feature, priority: Number(priority), notes});
+      });
+
+      // Collect top goals
+      const goals = [];
+      const goalRows = document.querySelectorAll('.card:nth-of-type(6) tbody tr');
+      goalRows.forEach((tr, idx) => {
+        const goal = tr.querySelector('textarea').value.trim();
+        if (goal) goals.push({number: idx + 1, goal});
+      });
+
+      // Collect constraints
+      const constraints = {};
+      const constraintRows = document.querySelectorAll('.card:nth-of-type(9) tbody tr');
+      constraintRows.forEach(tr => {
+        const field = tr.children[0].textContent;
+        const input = tr.querySelector('input, textarea');
+        const value = input ? input.value.trim() : '';
+        if (value) {
+          const key = field.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+          constraints[key] = value;
+        }
+      });
+
+      return {
+        meta: {
+          form: 'MGC Supplies Digital Transformation Decision Guide',
+          client: 'MGC Supplies',
+          version: '1.0.0',
+          generated_at: new Date().toISOString()
+        },
+        client_info: {
+          business_name: document.getElementById('businessName').value.trim(),
+          contact_name: document.getElementById('contactName').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          phone: document.getElementById('phone').value.trim()
+        },
+        payment: {
+          preference: document.getElementById('paymentPref').value,
+          method: document.getElementById('paymentMethod').value,
+          commitment_level: document.getElementById('commitmentLevel').value,
+          terms: '50% deposit, 25% midway, 25% at completion'
+        },
+        timeline: document.getElementById('timelineNotes').value.trim(),
+        budget_notes: document.getElementById('budgetNotes').value.trim(),
+        additional_notes: document.getElementById('generalNotes').value.trim(),
+        priorities,
+        goals,
+        constraints,
+        features,
+        totals: {
+          by_mode: document.getElementById('modeTotals').innerText,
+          units: Number(document.getElementById('unitTotal').innerText)
+        }
+      };
+    }
+
+    function copyJSON() {
+      const text = JSON.stringify(collectJSON(), null, 2);
+      navigator.clipboard.writeText(text).then(() => alert('JSON copied to clipboard!')).catch(() => {
+        const w = window.open('', '_blank');
+        w.document.write(`<pre>${text.replace(/[&<>]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[s]))}</pre>`);
+        w.document.close();
+      });
+    }
+
+    function downloadJson() {
+      const text = JSON.stringify(collectJSON(), null, 2);
+      const blob = new Blob([text], {type: 'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      const businessName = document.getElementById('businessName').value.trim().replace(/[^a-z0-9]/gi, '_') || 'Client';
+      a.download = `MGC_Supplies_Decision_Guide_${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+
+    function downloadTxt() {
+      const text = JSON.stringify(collectJSON(), null, 2);
+      const blob = new Blob([text], {type: 'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      const businessName = document.getElementById('businessName').value.trim().replace(/[^a-z0-9]/gi, '_') || 'Client';
+      a.download = `MGC_Supplies_Decision_Guide_${new Date().toISOString().split('T')[0]}.txt`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+
+    function populateForm(data) {
+      // Populate client info
+      if (data.client_info) {
+        if (data.client_info.business_name) document.getElementById('businessName').value = data.client_info.business_name;
+        if (data.client_info.contact_name) document.getElementById('contactName').value = data.client_info.contact_name;
+        if (data.client_info.email) document.getElementById('email').value = data.client_info.email;
+        if (data.client_info.phone) document.getElementById('phone').value = data.client_info.phone;
+      }
+
+      // Populate payment fields
+      if (data.payment) {
+        if (data.payment.preference) document.getElementById('paymentPref').value = data.payment.preference;
+        if (data.payment.method) document.getElementById('paymentMethod').value = data.payment.method;
+        if (data.payment.commitment_level) document.getElementById('commitmentLevel').value = data.payment.commitment_level;
+      }
+
+      // Populate text fields
+      if (data.timeline) document.getElementById('timelineNotes').value = data.timeline;
+      if (data.budget_notes) document.getElementById('budgetNotes').value = data.budget_notes;
+      if (data.additional_notes) document.getElementById('generalNotes').value = data.additional_notes;
+
+      // Populate features
+      if (data.features && data.features.length > 0) {
+        const rows = document.querySelectorAll('#features-body tr');
+        data.features.forEach(feature => {
+          if (feature.phase_header) return; // Skip phase headers
+          rows.forEach(row => {
+            if (row.querySelector('.phase-header')) return; // Skip header rows
+            const label = row.children[1].textContent;
+            if (label === feature.label) {
+              row.querySelector('input[type=checkbox]').checked = true;
+              row.querySelector('select').value = feature.mode;
+              if (feature.notes) row.querySelector('textarea').value = feature.notes;
+              row.querySelector('select').dispatchEvent(new Event('change'));
+            }
+          });
+        });
+      }
+
+      alert('Form data loaded successfully!');
+    }
+
+    function importJson() {
+      document.getElementById('jsonFileInput').click();
+    }
+
+    function handleFileImport(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          populateForm(data);
+        } catch (err) {
+          alert('Error reading JSON file: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function exportPrefilledHtml() {
+      const currentData = collectJSON();
+      const htmlDoc = document.documentElement.outerHTML;
+      const dataScript = `
+    <script id="prefilled-data">
+      window.addEventListener('DOMContentLoaded', function() {
+        const prefilledData = ${JSON.stringify(currentData, null, 2)};
+        setTimeout(function() {
+          populateForm(prefilledData);
+          document.getElementById('prefilled-data').remove();
+        }, 100);
+      });
+    </scr` + `ipt>`;
+      const modifiedHtml = htmlDoc.replace('</body>', dataScript + '\n</body>');
+      const blob = new Blob([modifiedHtml], {type: 'text/html'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      const businessName = document.getElementById('businessName').value.trim().replace(/[^a-z0-9]/gi, '_') || 'Client';
+      a.download = `MGC_Supplies_Decision_Guide_Prefilled.html`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+
+    function resetForm() {
+      if (!confirm('Reset all selections? This cannot be undone.')) return;
+      build();
+      document.querySelectorAll('input[type=text], input[type=email], input[type=tel], input[type=number], textarea').forEach(el => el.value = '');
+    }
+
+    document.getElementById('downloadJsonBtn').addEventListener('click', downloadJson);
+    document.getElementById('copyJsonBtn').addEventListener('click', copyJSON);
+    document.getElementById('importJsonBtn').addEventListener('click', importJson);
+    document.getElementById('exportHtmlBtn').addEventListener('click', exportPrefilledHtml);
+    document.getElementById('jsonFileInput').addEventListener('change', handleFileImport);
+    document.getElementById('downloadTxtBtn').addEventListener('click', downloadTxt);
+    document.getElementById('resetBtn').addEventListener('click', resetForm);
+
+    // Service Levels Modal Functions
+    function openServiceLevelsModal() {
+      document.getElementById('serviceLevelsModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeServiceLevelsModal() {
+      document.getElementById('serviceLevelsModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('serviceLevelsModal');
+      if (event.target === modal) {
+        closeServiceLevelsModal();
+      }
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeServiceLevelsModal();
+        closePresentationModal();
+      }
+    });
+
+    // Presentation Modal Functions
+    function openPresentationModal() {
+      document.getElementById('presentationModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePresentationModal() {
+      document.getElementById('presentationModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function downloadPresentation() {
+      const presentationContent = `
+MGC SUPPLIES DIGITAL TRANSFORMATION
+Strategic Recommendations & Findings
+Prepared by Enable Solutions
+Generated: ${new Date().toLocaleString()}
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 1: EXECUTIVE SUMMARY
+
+MGC Supplies is poised for digital transformation to scale operations, automate
+commission tracking, and empower independent sales reps with modern tools.
+
+PROGRAM OBJECTIVE:
+Establish a compliant, scalable digital infrastructure on Zoho to manage quoting,
+invoicing, payments, and automated commissions for independent sales reps; phase
+in automation and analytics with clear auditability.
+
+GUIDING PRINCIPLES:
+• Compliance-first: HIPAA-aligned handling of PII/PHI, least-privilege access, auditable logs
+• MVP-first execution: Reduce manual work quickly, then iterate
+• Data integrity: Single-source-of-truth across CRM and Books
+• Secure enablement: 1099 reps access without exposing sensitive financials
+
+TIMELINE:
+12 months across 3 strategic phases: Foundation → Automation → Optimization
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 2: PHASE 1 - FOUNDATION & QUICK WINS
+Timeline: Q4 2025 (Months 0–3)
+
+KEY DELIVERABLES:
+• Quote → Invoice automation in Zoho Books (auto-convert on acceptance)
+• Commission Framework v1: Single-rep formulas configured; first monthly report
+• Bookkeeping transition start: Wave parallel run; chart-of-accounts mapping
+• Secure Rep Deal Intake Form (HTML/Creator) as interim to portal
+• Dual payment setup: Zoho Pay backup + RunPayment (NMI) primary
+
+EXPECTED OUTCOMES:
+• ≥50% reduction - Duplicate/manual entry for quotes and invoices eliminated
+• 30% faster - Time-to-quote reduced by 30%
+• <5 minutes/month - Commission statements produced in under 5 minutes per month
+
+SUCCESS METRICS:
+• 100% of accepted quotes auto-generate invoices
+• Commission report accuracy ≥ 99% (spot-check method)
+• Consistent payment receipt records tied to invoices
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 3: PHASE 2 - AUTOMATION & REP ENABLEMENT
+Timeline: Q1–Q2 2026 (Months 4–9)
+
+KEY DELIVERABLES:
+• Commission Engine v2: Tiered rates, multi-rep splits, vendor/partner splits with exception handling
+• Invoice → Purchase Order automation with supplier selection logic
+• Rep Portal Prototype (Creator/CRM Portal): Deals, commissions-to-date, payout status
+• Shipment tracking workflow: Add tracking in Books → client auto-email
+• Zoho Analytics dashboards: Sales by Rep, Margin by Product/Service, AR aging, Time-to-Cash
+
+EXPECTED OUTCOMES:
+• ≥90% automation - Commission calculations fully automated
+• ≥75% automation - PO creation from paid invoices automated
+• 30% improvement - Quote-to-cash cycle vs. baseline
+
+SUCCESS METRICS:
+• Portal adoption by 100% active reps
+• Discrepancy rate between CRM and Books ≤ 5%
+• Dashboard coverage of KPIs (rep, margin, cash) = 100%
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 4: PHASE 3 - OPTIMIZATION & COMPLIANCE
+Timeline: Q3 2026 (Months 10–12)
+
+KEY DELIVERABLES:
+• Full Rep Portal Launch with role-based access, earnings visibility, and payout audit trail
+• Compliance & documentation pack: NDAs/MOUs templates, approval logs, immutable change history
+• SOP Library covering quoting, PO routing, reconciliation, portal usage, and exceptions
+• Training & knowledge transfer: Quick videos, playbooks, and rep onboarding checklist
+• Margin & profit tracking surfaced to finance only (hide GP from reps)
+
+EXPECTED OUTCOMES:
+• 100% transparency - Rep transparency on commissions and payout status
+• ≥70% reduction - Manual bookkeeping effort reduced by 70% or more
+• Audit-ready - Complete logs for quotes → invoices → payments → commissions
+
+SUCCESS METRICS:
+• Month-end close accelerated with reconciled Books ↔ CRM
+• UAT pass rate ≥95% before each release
+• Quality and compliance controls embedded in everyday workflows
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 5: KEY STRATEGIC RECOMMENDATIONS
+
+1. START WITH PHASE 1 — FOUNDATION IS CRITICAL
+   Why: Quick wins build momentum; foundation must be solid before automation
+   layers; payment processor onboarding takes time.
+   Risk if delayed: Manual processes compound errors; commission disputes
+   increase; rep frustration grows.
+
+2. COMMIT TO FULL 12-MONTH ROADMAP
+   Why: Phase 1 alone won't deliver full automation; Rep portal (Phase 2-3) is
+   critical for 1099 model; Compliance & governance protect against future risk.
+   Alternative: Phased approval with gate reviews after Phase 1 and Phase 2.
+
+3. PRIORITIZE COMMISSION ENGINE EARLY
+   Why: Commission disputes erode rep trust; manual calculations don't scale;
+   audit trail is critical for 1099 compliance.
+
+4. DUAL PAYMENT GATEWAY STRATEGY
+   Why: Payment processor holds/underwriting delays are common; failover
+   prevents revenue disruption.
+
+5. CONTROL REP ACCESS FROM DAY 1
+   Why: 1099 reps should never see gross profit margins; PII/PHI handling must
+   be HIPAA-aligned; audit logs required for compliance.
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 6: RISKS & MITIGATIONS
+
+RISK: Payment processor holds/underwriting delays
+MITIGATION: Dual-gateway strategy (Zoho Pay backup, RunPayment primary); failover SOP
+
+RISK: Data inconsistency between CRM and Books
+MITIGATION: Authoritative mapping, nightly sync checks, exception reports
+
+RISK: Rep access creep / data leakage
+MITIGATION: Strict roles/profiles, portal isolation, periodic access reviews
+
+RISK: Internal bandwidth constraints
+MITIGATION: Hybrid engagement model; realistic sprint planning
+
+RISK: Scope creep during implementation
+MITIGATION: Change control process; gate approvals at each phase
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 7: SUCCESS METRICS SUMMARY
+
+PHASE 1 METRICS (Q4 2025):
+• Time-to-quote reduced by 30%
+• 100% of accepted quotes auto-generate invoices
+• Commission report accuracy ≥ 99%
+• ≥50% reduction in manual entry
+
+PHASE 2 METRICS (Q1-Q2 2026):
+• Portal adoption by 100% of active reps
+• ≥90% automation of commission calculations
+• ≥75% automation of PO creation
+• 30% improvement in quote-to-cash cycle
+
+PHASE 3 METRICS (Q3 2026):
+• ≥70% reduction in manual bookkeeping effort
+• Audit-ready logs for all transactions
+• UAT pass rate ≥95% before each release
+• 100% rep transparency on commissions
+
+ROI TIMELINE:
+Immediate benefits in Phase 1 (50% reduction in manual work) scaling to
+transformative results by Phase 3 (70% reduction in bookkeeping effort +
+full automation)
+
+═══════════════════════════════════════════════════════════════════
+
+SLIDE 8: NEXT STEPS TO ENGAGEMENT
+
+STEP 1: Review & Complete Decision Guide ✅
+Check all relevant boxes, rank priorities, note constraints and goals, select
+engagement model
+
+STEP 2: Schedule Decision Meeting
+Purpose: Review your responses, answer questions, refine scope
+Duration: 60–90 minutes
+Outcome: Finalized scope and timeline
+
+STEP 3: Commercial Proposal & Terms
+Enable Solutions provides detailed proposal based on selected engagement model,
+phase approvals, feature priorities, and commitment timeframe
+
+STEP 4: Kickoff & Phase 1 Launch
+Sign agreement, schedule kickoff, begin Week 1 discovery and requirements gathering
+
+IMMEDIATE ACTIONS REQUIRED:
+• Provide commission rule details for v1 configuration
+• Confirm Chart of Accounts with accountant
+• Kick off RunPayment (NMI) onboarding
+• Populate items/services catalog and pricing rules
+
+═══════════════════════════════════════════════════════════════════
+
+END OF PRESENTATION
+
+This document contains Enable Solutions' strategic recommendations for MGC Supplies.
+For questions or to proceed, contact Enable Solutions.
+      `.trim();
+
+      const blob = new Blob([presentationContent], {type: 'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `MGC_Supplies_Strategic_Recommendations_${new Date().toISOString().split('T')[0]}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+
+      alert('Presentation downloaded successfully!');
+    }
+
+    // Update window onclick to handle both modals
+    window.onclick = function(event) {
+      const serviceLevelsModal = document.getElementById('serviceLevelsModal');
+      const presentationModal = document.getElementById('presentationModal');
+      if (event.target === serviceLevelsModal) {
+        closeServiceLevelsModal();
+      }
+      if (event.target === presentationModal) {
+        closePresentationModal();
+      }
+    }
+
+    build();
+  </script>
+</body>
+</html>
